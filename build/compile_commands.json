@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/main.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c"
+},
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/src/sdl_playground.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c"
+},
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/src/draw.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c"
+},
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/src/entity.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c"
+},
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/src/level.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c"
+},
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/src/api.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c"
+},
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/src/ai.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c"
+},
+{
+  "directory": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9  -I/usr/include/SDL2 -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/res\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src\" -I\"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib\"  -g   -o CMakeFiles/pacman.dir/src/game.c.o   -c \"/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c\"",
+  "file": "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c"
+}
+]
