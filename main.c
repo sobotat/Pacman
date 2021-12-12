@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
             }
             else if ( e.type == SDL_KEYDOWN ) { // key pressed down
                 if ( e.key.keysym.sym == SDLK_r ) {
-                    game_restart( &ren, &my_levels, &pl_index, levels_count, debug);
+                    game_restart( win, &ren, &my_levels, &pl_index, &win_width, &win_height,levels_count, debug);
                 }else if(e.key.keysym.sym == SDLK_SPACE){
                     if (my_levels->game_win == 0)                                
                         my_levels->game_running = 1;

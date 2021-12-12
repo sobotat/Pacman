@@ -89,6 +89,28 @@ void game_win(SDL_Window* win, Levels** level, int* win_width, int* win_height){
     change_level(win, level, win_width, win_height);
 }
 
+void change_window_size(SDL_Window* win, Levels** level, int* win_width, int* win_height){
+    *win_width = 60 + ((*level)->maps_size_x[(*level)->current_level] * 30);
+    *win_height = 125 + ((*level)->maps_size_y[(*level)->current_level] * 30);
+    SDL_SetWindowSize(win, *win_width, *win_height);
+    SDL_SetWindowPosition(win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+}
+void change_level(SDL_Window* win, Levels** level, int* win_width, int* win_height){
+
+    for (int e = 0; e < (*level)->entities_len[(*level)->current_level]; e++){
+        (*level)->entities[(*level)->current_level][e]->pos_x = (*level)->entities[(*level)->current_level][e]->start_pos_x;
+        (*level)->entities[(*level)->current_level][e]->pos_y = (*level)->entities[(*level)->current_level][e]->start_pos_y;
+    }    
+    
+    if((*level)->current_level != (*level)->maps_len - 1)
+        (*level)->current_level++;
+    else
+        (*level)->current_level = 0;
+
+    
+    change_window_size(win, level, win_width, win_height);
+}
+
 void game_run(SDL_Renderer** ren, Levels** level, const int animation_count, const int animation_freq, const int pl_index, const int scale, const int move_scale, const int debug){
     for (int i = 0; i < (*level)->entities_len[(*level)->current_level]; i++){
         Entity* entity = (*level)->entities[(*level)->current_level][i];
@@ -138,34 +160,13 @@ void game_run(SDL_Renderer** ren, Levels** level, const int animation_count, con
 
     game_kill(&((*level)->entities[(*level)->current_level]), &(*level), (*level)->entities_len[(*level)->current_level], pl_index);
 }
-void game_restart(SDL_Renderer** ren, Levels** level, int* pl_index, const int levels_count, const int debug){
+void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_index, int* win_width, int* win_height, const int levels_count, const int debug){|
     printf("Restarting Game ...\n");
     levels_free( level);
     load_levels( level, levels_count, debug);
     load_texture( ren, level, debug);
-    printf("Restart Complete\n");
-}
-
-void change_window_size(SDL_Window* win, Levels** level, int* win_width, int* win_height){
-    *win_width = 60 + ((*level)->maps_size_x[(*level)->current_level] * 30);
-    *win_height = 125 + ((*level)->maps_size_y[(*level)->current_level] * 30);
-    SDL_SetWindowSize(win, *win_width, *win_height);
-    SDL_SetWindowPosition(win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-}
-void change_level(SDL_Window* win, Levels** level, int* win_width, int* win_height){
-
-    for (int e = 0; e < (*level)->entities_len[(*level)->current_level]; e++){
-        (*level)->entities[(*level)->current_level][e]->pos_x = (*level)->entities[(*level)->current_level][e]->start_pos_x;
-        (*level)->entities[(*level)->current_level][e]->pos_y = (*level)->entities[(*level)->current_level][e]->start_pos_y;
-    }    
-    
-    if((*level)->current_level != (*level)->maps_len - 1)
-        (*level)->current_level++;
-    else
-        (*level)->current_level = 0;
-
-    
     change_window_size(win, level, win_width, win_height);
+    printf("Restart Complete\n");
 }
 
 void load_texture(SDL_Renderer** ren, Levels** levels, int debug){
