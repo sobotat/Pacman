@@ -24,6 +24,7 @@ Levels* levels_new( const int maps_len, const int textures_len, const int fonts_
     level->fonts_len = fonts_len;
     
     level->score = 0;
+    level->coop_score = 0;
     level->lives = 3;
     level->charge_time = 0;
     level->charge_start_time = 0;

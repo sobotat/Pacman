@@ -19,7 +19,7 @@
 
 
 int main(int argc, char** argv) {
-    int debug = 0, counter = 0, last_score = 0, last_lives = 0, last_win = 0, last_charge = 0, game_started = 0;
+    int debug = 0, counter = 0, last_score = 0, last_coop_score = 0, last_lives = 0, last_win = 0, last_charge = 0, game_started = 0;
 
     //Settings    
     int win_width = 810, win_height = 505;
@@ -137,7 +137,7 @@ int main(int argc, char** argv) {
             game_run( &ren, &my_levels, animation_count, animation_freq, my_levels->pl_index , my_levels->coop_pl_index, scale, move_speed, debug);
         }
 
-        if(counter >= 2 * scale || my_levels->score != last_score || my_levels->lives != last_lives || my_levels->charge_time != last_charge || my_levels->game_win != last_win){
+        if(counter >= 2 * scale || my_levels->score != last_score || my_levels->coop_score != last_coop_score || my_levels->lives != last_lives || my_levels->charge_time != last_charge || my_levels->game_win != last_win){
             draw_hud(&ren, &score_texture, &win_texture, my_levels, win_width, 1);
 
             if(last_win == my_levels->game_win && my_levels->game_win == 1 && counter >= 2*scale){
@@ -150,6 +150,7 @@ int main(int argc, char** argv) {
                 my_levels->game_running = 0;
             
             last_win = my_levels->game_win;
+            last_coop_score = my_levels->coop_score;
             last_score = my_levels->score;
             last_lives = my_levels->lives;
             last_charge = my_levels->charge_time;
@@ -158,7 +159,10 @@ int main(int argc, char** argv) {
             if(debug != 1){
                 printf("\e[1;1H\e[2J");
                 printf("Info:\n");
-                printf(" Score: %i\n Lives: %i\n Charge %i\n FPS: %i\n\n", my_levels->score, my_levels->lives, my_levels->charge_time, fps);
+                if(my_levels->coop == 0)
+                    printf(" Score: %i\n Lives: %i\n Charge %i\n FPS: %i\n\n", my_levels->score, my_levels->lives, my_levels->charge_time, fps);
+                else
+                    printf(" P1 Score: %i\n P2 Score: %i\n Lives: %i\n Charge %i\n FPS: %i\n\n", my_levels->score, my_levels->coop_score, my_levels->lives, my_levels->charge_time, fps);
             }else
                 printf(" Score: %i\t Lives: %i\t Charge %i\t FPS: %i\n", my_levels->score, my_levels->lives, my_levels->charge_time, fps);
         }else{
