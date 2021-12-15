@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     printf("Level Loaded\n");
 
     // Find Player Location in Level
-    find_player(&(my_levels->entities[my_levels->current_level]), my_levels->entities_len[my_levels->current_level], &my_levels);  
+    find_player(&(my_levels->entities[my_levels->current_level]), my_levels->entities_len[my_levels->current_level], &my_levels);
     if(my_levels->coop == 1)
         printf("Coop is enabled\n");
 

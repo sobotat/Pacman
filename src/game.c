@@ -220,6 +220,7 @@ void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_i
     printf("Restarting Game ...\n");
     levels_free( level);
     load_levels( level, levels_count, coop, debug);
+    find_player( &((*level)->entities[(*level)->current_level]), (*level)->entities_len[(*level)->current_level], level);
     load_texture( ren, level, debug);
     change_window_size(win, level, win_width, win_height);
     printf("Restart Complete\n");
