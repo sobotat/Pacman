@@ -43,21 +43,30 @@ char* get_address(Entity* entity, const int direction, const int style){
     return address;
 }
 
-void get_args(int argc, char** argv, int* move_speed, int* levels_count, int* debug){
-    if(argc > 3){
+void get_args(int argc, char** argv, int* coop,int* move_speed, int* levels_count, int* debug){
+    if(argc > 4){
+        if(atoi(argv[argc - 4]) != 0)
+            *coop = atoi(argv[argc - 4]);
         if(atoi(argv[argc - 3]) != 0)
             *move_speed = atoi(argv[argc - 3]);
         if(atoi(argv[argc - 2]) != 0)
             *levels_count = atoi(argv[argc - 2]);
         *debug = atoi(argv[argc - 1]);
-    }else if(argc > 2){
+    }else if(argc > 3){
+        if(atoi(argv[argc - 3]) != 0)
+            *coop = atoi(argv[argc - 3]);
         if(atoi(argv[argc - 2]) != 0)
-            *move_speed = atoi(argv[argc - 3]);
+            *move_speed = atoi(argv[argc - 2]);
         if(atoi(argv[argc - 1]) != 0)
-            *levels_count = atoi(argv[argc - 2]);
-    }else if (argc > 1){
+            *levels_count = atoi(argv[argc - 1]);
+    }else if (argc > 2){
+        if(atoi(argv[argc - 2]) != 0)
+            *coop = atoi(argv[argc - 2]);
         if(atoi(argv[argc - 1]) != 0)
             *move_speed = atoi(argv[argc - 1]);
+    }else if (argc > 1){
+        if(atoi(argv[argc - 1]) != 0)
+            *coop = atoi(argv[argc - 1]);
     }
 }
 

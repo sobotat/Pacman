@@ -204,7 +204,8 @@ void draw_level(SDL_Renderer** ren, Entity** entities, const int entities_len, L
     }
     
     for (int i = 0; i < entities_len; i++){
-        draw_entity(ren, entities[i], (*level));    
+        if((*level)->coop == 1 || i != (*level)->coop_pl_index)
+            draw_entity(ren, entities[i], (*level));    
     }
 
     if(no_points_left == 1)
