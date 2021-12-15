@@ -22,6 +22,7 @@ typedef struct{
     int fonts_len;              // Size arr of fonts
 
     int score;                  // Player score
+    int coop_score;             // Coplayer score
     int lives;                  // Player lives
     int charge_time;            // Charge is active 0,1
     int charge_start_time;      // start of charge 

@@ -24,20 +24,23 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
             color.b = 255;
         }
         char* score_str = malloc(sizeof(char) * 100); score_str[0] = '\0';
-        score_str = strcat(score_str, "Score: ");
+        if(level->coop == 0)
+            sprintf(score_str, "Score: %5d", level->score);
+        else{
+            sprintf(score_str, "P1: %5d    P2: %5d", level->score, level->coop_score);
+        }
 
-        char str[10];
-        sprintf(str, "%5d", level->score);
-        score_str = strcat(score_str, str);
         SDL_Surface* surface_message = TTF_RenderText_Solid(level->fonts[0], score_str, color);
         *texture_score = SDL_CreateTextureFromSurface(*ren, surface_message);
         SDL_FreeSurface(surface_message);
         free(score_str);
     }
-    rect.x = 25;
-    rect.y = 28;
-    rect.w = 80;
-    rect.h = 26;
+    rect.x = 25; rect.y = 28; rect.h = 26;
+    if(level->coop == 0)
+        rect.w = 80;
+    else
+        rect.w = 160;
+    
     SDL_RenderCopy(*ren, *texture_score, NULL, &rect);
 
     // Win/Lost - Level

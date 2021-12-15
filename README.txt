@@ -26,6 +26,7 @@ Have a nice play
 Changelog:
     v1.0 - dropping the full version of the game
     v1.1 - coop was added, new Pacman textures to distinguish 2 players
+    v1.1.1 - coop score was added, score of killing ghosts divided into players, added coop score to hud
 
 --------------------------------------------------------------------------------
 

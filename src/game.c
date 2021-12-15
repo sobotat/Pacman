@@ -7,18 +7,31 @@ void game_charge(Levels** level){
     }
 }
 void game_score(Entity** entity, Levels** level){
+    char item = (*level)->maps[(*level)->current_level][to_1d(round((*entity)->pos_x), round((*entity)->pos_y), (*level)->maps_size_y[(*level)->current_level])];
     if((*entity)->type == 'p'){
-        char item = (*level)->maps[(*level)->current_level][to_1d(round((*entity)->pos_x), round((*entity)->pos_y), (*level)->maps_size_y[(*level)->current_level])];
-        if( '.' == item){
-            (*level)->score += 10;
-            (*level)->maps[(*level)->current_level][to_1d(round((*entity)->pos_x), round((*entity)->pos_y), (*level)->maps_size_y[(*level)->current_level])] = ' ';
-        }else if( 'o' == item){
+        if( 'o' == item){
             (*level)->charge_time = 1;
             (*level)->charge_count--;
             (*level)->charge_start_time = SDL_GetTicks();
             (*level)->maps[(*level)->current_level][to_1d(round((*entity)->pos_x), round((*entity)->pos_y), (*level)->maps_size_y[(*level)->current_level])] = ' ';
         }
         game_charge(level);
+    }
+    if((*level)->coop == 0){
+        if( '.' == item){
+            (*level)->score += 10;
+            (*level)->maps[(*level)->current_level][to_1d(round((*entity)->pos_x), round((*entity)->pos_y), (*level)->maps_size_y[(*level)->current_level])] = ' ';
+        }
+    }else {
+        if( '.' == item){
+            if((*level)->entities[(*level)->current_level][(*level)->coop_pl_index]->pos_x == (*entity)->pos_x && 
+               (*level)->entities[(*level)->current_level][(*level)->coop_pl_index]->pos_y == (*entity)->pos_y ){
+                (*level)->coop_score += 10;
+            }else{
+                (*level)->score += 10;
+            }
+            (*level)->maps[(*level)->current_level][to_1d(round((*entity)->pos_x), round((*entity)->pos_y), (*level)->maps_size_y[(*level)->current_level])] = ' ';
+        }
     }
 }
 void game_kill(Entity*** entity, Levels** level, const int entity_len, const int pl_index, const int coop_pl_index){
@@ -63,17 +76,29 @@ void game_kill(Entity*** entity, Levels** level, const int entity_len, const int
                 if( ((int)round((*entity)[e]->pos_x) == (int)round(player->pos_x)) && ((int)round((*entity)[e]->pos_y) == (int)round(player->pos_y)) || 
                     ((int)round((*entity)[e]->pos_x) == (int)round(coop_player->pos_x)) && ((int)round((*entity)[e]->pos_y) == (int)round(coop_player->pos_y)) ){
                     if((*level)->charge_time == 1){   
+                        if( (int)round(coop_player->pos_x) == (int)round((*entity)[e]->pos_x) && 
+                            (int)round(coop_player->pos_y) == (int)round((*entity)[e]->pos_y) ){
+                            if((*level)->charge_count == 3)
+                                (*level)->coop_score += 200;
+                            else if((*level)->charge_count == 2)
+                                (*level)->coop_score += 400;
+                            else if((*level)->charge_count == 1)
+                                (*level)->coop_score += 800;
+                            else if((*level)->charge_count == 0)
+                                (*level)->coop_score += 1600;
+                        }else{
+                            if((*level)->charge_count == 3)
+                                (*level)->score += 200;
+                            else if((*level)->charge_count == 2)
+                                (*level)->score += 400;
+                            else if((*level)->charge_count == 1)
+                                (*level)->score += 800;
+                            else if((*level)->charge_count == 0)
+                                (*level)->score += 1600;
+                        }
+
                         (*entity)[e]->pos_x = (*entity)[e]->start_pos_x;
                         (*entity)[e]->pos_y = (*entity)[e]->start_pos_y;
-
-                        if((*level)->charge_count == 3)
-                            (*level)->score += 200;
-                        else if((*level)->charge_count == 2)
-                            (*level)->score += 400;
-                        else if((*level)->charge_count == 1)
-                            (*level)->score += 800;
-                        else if((*level)->charge_count == 0)
-                            (*level)->score += 1600;
                     }else{
                         (*level)->lives--;
                         player->direction = -1;
