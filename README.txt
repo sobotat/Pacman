@@ -11,14 +11,21 @@ Warning:
     - game was developed only for Linux with SDL library.
 
 How to start:
-    A. use make command in the folder for start a game.
-    B. ./pacman in build folder
+    A. use 'make' command in the folder for start a game.
+    B. if you want play with friends use command ./pacman 1
+    C. for default run of game write ./pacman
 
 The Pacman game originated as a college programming project.
 There are 3 levels in the game, dangerous ghosts and, most importantly, 
 the chance to experience the old days as in the creation of the original Pacman.
 
 Have a nice play
+
+--------------------------------------------------------------------------------
+
+Changelog:
+    v1.0 - dropping the full version of the game
+    v1.1 - coop was added, new Pacman textures to distinguish 2 players
 
 --------------------------------------------------------------------------------
 
@@ -51,7 +58,8 @@ Map editing:
 --------------------------------------------------------------------------------
 
 Arguments:
-    1. move_speed - chance move speed (default is 4), 
+    1. coop_mode - to enable coop mode write 1 (default is 0)
+    2. move_speed - chance move speed (default is 4), 
                     maximum recomended speed is 15, 0 to use default number 
-    2. maps_size - number of levels to load (default is 3), 0 to use default number
-    3. debug - choose 0 or 1 to enable debug mode (default is 0)
+    3. maps_size - number of levels to load (default is 3), 0 to use default number
+    4. debug - choose 0 or 1 to enable debug mode (default is 0)

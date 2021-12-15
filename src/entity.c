@@ -30,16 +30,3 @@ void entity_swap_style(Entity** self){
     else
         (*self)->style = 0;
 }
-
-void find_player(Entity*** entities, const int entities_len, int* pl_index){
-    for (int i = 0; i < entities_len; i++){
-        if((*entities)[i]->type == 'p')
-            *pl_index = i;
-    }
-    if(*pl_index == -1){
-        fprintf(stderr, "Player not found in level\n");
-        exit(1);
-    }
-    (*entities)[*pl_index]->direction = -1;
-    (*entities)[*pl_index]->direction_next = -1;
-}

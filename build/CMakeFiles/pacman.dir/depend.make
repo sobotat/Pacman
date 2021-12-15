@@ -115,6 +115,7 @@ CMakeFiles/pacman.dir/src/ai.c.o: /usr/include/SDL2/close_code.h
 CMakeFiles/pacman.dir/src/api.c.o: ../src/api.c
 CMakeFiles/pacman.dir/src/api.c.o: ../src/lib/api.h
 CMakeFiles/pacman.dir/src/api.c.o: ../src/lib/entity.h
+CMakeFiles/pacman.dir/src/api.c.o: ../src/lib/level.h
 CMakeFiles/pacman.dir/src/api.c.o: /usr/include/SDL2/SDL.h
 CMakeFiles/pacman.dir/src/api.c.o: /usr/include/SDL2/SDL_assert.h
 CMakeFiles/pacman.dir/src/api.c.o: /usr/include/SDL2/SDL_atomic.h

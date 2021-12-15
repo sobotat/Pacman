@@ -24,6 +24,5 @@ typedef struct{
 
 Entity* entity_new(const double pos_x, const double pos_y, const char type);
 void entity_swap_style(Entity** self);
-void find_player(Entity*** entities, const int entities_len, int* pl_index);
 
 #endif

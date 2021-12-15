@@ -116,6 +116,7 @@ CMakeFiles/pacman.dir/src/api.c.o
  /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c
  /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/api.h
  /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/entity.h
+ /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/level.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
  /usr/include/SDL2/SDL_atomic.h

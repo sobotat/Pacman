@@ -31,6 +31,10 @@ Levels* levels_new( const int maps_len, const int textures_len, const int fonts_
 
     level->game_running = 0;
     level->game_win = 0;
+
+    level->coop = 0;
+    level->coop_pl_index = -1;
+    level->pl_index = -1;
 }
 
 void levels_free(Levels** level){
