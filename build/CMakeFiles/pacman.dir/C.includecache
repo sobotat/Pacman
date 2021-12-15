@@ -32,6 +32,22 @@ src/lib/ai.h
 src/lib/game.h
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/game.h
 
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c
+lib/ai.h
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/ai.h
+
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c
+lib/api.h
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/api.h
+
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c
+lib/draw.h
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/draw.h
+
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c
+lib/game.h
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/game.h
+
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/ai.h
 stdlib.h
 -
@@ -51,6 +67,8 @@ stdbool.h
 -
 entity.h
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/entity.h
+level.h
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/level.h
 
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/draw.h
 stdbool.h

@@ -43,8 +43,13 @@ int main(int argc, char** argv) {
     
     // Load Level
     Levels* my_levels = NULL;
-    load_levels(&my_levels, levels_count, debug);
+    load_levels(&my_levels, levels_count, coop, debug);
     printf("Level Loaded\n");
+
+    // Find Player Location in Level
+    find_player(&(my_levels->entities[my_levels->current_level]), my_levels->entities_len[my_levels->current_level], &my_levels);  
+    if(my_levels->coop == 1)
+        printf("Coop is enabled\n");
 
     // Setting window size
     change_window_size(win, &my_levels, &win_width, &win_height);
@@ -52,13 +57,6 @@ int main(int argc, char** argv) {
     // Texture load
     load_texture(&ren, &my_levels, debug);
     printf("Textures Loaded\n");  
-
-    // Find Player Location in Level
-    find_player(&(my_levels->entities[my_levels->current_level]), my_levels->entities_len[my_levels->current_level], &my_levels);  
-    if(coop == 1){
-        my_levels->coop = 1;
-        printf("Coop is enabled\n");
-    }
 
     SDL_Event e;
     bool quit = false;
@@ -76,7 +74,7 @@ int main(int argc, char** argv) {
             }
             else if ( e.type == SDL_KEYDOWN ) { // key pressed down
                 if ( e.key.keysym.sym == SDLK_r ) {
-                    game_restart( win, &ren, &my_levels, &(my_levels->pl_index), &win_width, &win_height,levels_count, debug);
+                    game_restart( win, &ren, &my_levels, &(my_levels->pl_index), &win_width, &win_height,levels_count, coop, debug);
                 }else if(e.key.keysym.sym == SDLK_SPACE){
                     if (my_levels->game_win == 0)                                
                         my_levels->game_running = 1;
@@ -102,19 +100,19 @@ int main(int argc, char** argv) {
                     my_levels->entities[my_levels->current_level][my_levels->pl_index]->direction_wanted = 3;
                     if (my_levels->game_win == 0)                     
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_a && my_levels->coop_pl_index != -1 ){
+                }else if( e.key.keysym.sym == SDLK_a && my_levels->coop_pl_index != -1 && my_levels->coop == 1){
                     my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 0;
                     if (my_levels->game_win == 0)                     
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_d &&  my_levels->coop_pl_index != -1 ){
+                }else if( e.key.keysym.sym == SDLK_d &&  my_levels->coop_pl_index != -1 && my_levels->coop == 1 ){
                     my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 1;
                     if (my_levels->game_win == 0)                     
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_w &&  my_levels->coop_pl_index != -1 ){
+                }else if( e.key.keysym.sym == SDLK_w &&  my_levels->coop_pl_index != -1 && my_levels->coop == 1 ){
                     my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 2;
                     if (my_levels->game_win == 0)                     
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_s &&  my_levels->coop_pl_index != -1 ){
+                }else if( e.key.keysym.sym == SDLK_s &&  my_levels->coop_pl_index != -1 && my_levels->coop == 1 ){
                     my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 3;
                     if (my_levels->game_win == 0)                     
                         my_levels->game_running = 1;

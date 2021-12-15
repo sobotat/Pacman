@@ -4,24 +4,35 @@ int to_1d( const int row, const int col, const int cols ) {
     return row * cols + col;
 }
 
-char* get_address(Entity* entity, const int direction, const int style){
+char* get_address(Entity* entity, Levels* level, const int level_index, const int direction, const int style){
     char* address = malloc(sizeof(char) * 100); address[0] = '\0';
 
-    address = strcat(address, "res/characters/");
-
-    char type[2];
-    if(direction == 4 || direction == 5){
-        type[0] = 'g'; type[1] = '\0';
-    }else{
-        type[0] = entity->type; type[1] = '\0';
+    if(level->coop == 1 && entity->type == 'p')
+        address = strcat(address, "res/characters/p/coop");
+    else{
+        address = strcat(address, "res/characters/");
+    
+        char type[2];
+        if(direction == 4 || direction == 5){
+            type[0] = 'g'; type[1] = '\0';
+        }else{
+            type[0] = entity->type; type[1] = '\0';
+        }
+        address = strcat(address, type);
     }
-    address = strcat(address, type);
 
     if(entity->type != 'p')
         address = strcat(address, "/npc_");
-    else
-        address = strcat(address, "/player_");
-
+    else{
+        if(level->coop == 1){
+            if( level->entities[level_index][level->coop_pl_index]->pos_x == entity->pos_x && 
+                level->entities[level_index][level->coop_pl_index]->pos_y == entity->pos_y){
+                address = strcat(address, "/coplayer_");
+            }else
+                address = strcat(address, "/player_");
+        }else
+            address = strcat(address, "/player_");
+    }
     if(direction == -1)
         address = strcat(address, "stop");
     else if(direction == 0)

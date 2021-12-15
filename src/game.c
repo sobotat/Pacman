@@ -24,13 +24,12 @@ void game_score(Entity** entity, Levels** level){
 void game_kill(Entity*** entity, Levels** level, const int entity_len, const int pl_index, const int coop_pl_index){
     Entity* player = (*entity)[pl_index];
     Entity* coop_player = NULL;
-    if(coop_pl_index != -1)
+    if((*level)->coop != 0)
         coop_player = (*entity)[coop_pl_index];
     
     for (int e = 0; e < entity_len; e++){
         if (e != pl_index && e != coop_pl_index){
-            if(( ((int)round((*entity)[e]->pos_x) == (int)round(player->pos_x)) && ((int)round((*entity)[e]->pos_y) == (int)round(player->pos_y))) || 
-               ( ((int)round((*entity)[e]->pos_x) == (int)round(coop_player->pos_x)) && ((int)round((*entity)[e]->pos_y) == (int)round(coop_player->pos_y))) ){
+            if( (*level)->coop == 0 && ((int)round((*entity)[e]->pos_x) == (int)round(player->pos_x)) && ((int)round((*entity)[e]->pos_y) == (int)round(player->pos_y)) ){
                 
                 if((*level)->charge_time == 1){   
                     (*entity)[e]->pos_x = (*entity)[e]->start_pos_x;
@@ -47,8 +46,6 @@ void game_kill(Entity*** entity, Levels** level, const int entity_len, const int
                 }else{
                     (*level)->lives--;
                     player->direction = -1;
-                    if(coop_pl_index != -1)
-                        coop_player->direction = -1;
                     (*level)->game_running = 0;
                     
                     if((*level)->lives == 0){
@@ -58,6 +55,40 @@ void game_kill(Entity*** entity, Levels** level, const int entity_len, const int
                         for (int x = 0; x < entity_len; x++){
                             (*entity)[x]->pos_x = (*entity)[x]->start_pos_x;
                             (*entity)[x]->pos_y = (*entity)[x]->start_pos_y;
+                        }
+                    }
+                }
+            }
+            else if((*level)->coop != 0){
+                if( ((int)round((*entity)[e]->pos_x) == (int)round(player->pos_x)) && ((int)round((*entity)[e]->pos_y) == (int)round(player->pos_y)) || 
+                    ((int)round((*entity)[e]->pos_x) == (int)round(coop_player->pos_x)) && ((int)round((*entity)[e]->pos_y) == (int)round(coop_player->pos_y)) ){
+                    if((*level)->charge_time == 1){   
+                        (*entity)[e]->pos_x = (*entity)[e]->start_pos_x;
+                        (*entity)[e]->pos_y = (*entity)[e]->start_pos_y;
+
+                        if((*level)->charge_count == 3)
+                            (*level)->score += 200;
+                        else if((*level)->charge_count == 2)
+                            (*level)->score += 400;
+                        else if((*level)->charge_count == 1)
+                            (*level)->score += 800;
+                        else if((*level)->charge_count == 0)
+                            (*level)->score += 1600;
+                    }else{
+                        (*level)->lives--;
+                        player->direction = -1;
+                        if(coop_pl_index != -1)
+                            coop_player->direction = -1;
+                        (*level)->game_running = 0;
+                        
+                        if((*level)->lives == 0){
+                            (*level)->game_running = 0;
+                            (*level)->game_win = -1;
+                        }else{
+                            for (int x = 0; x < entity_len; x++){
+                                (*entity)[x]->pos_x = (*entity)[x]->start_pos_x;
+                                (*entity)[x]->pos_y = (*entity)[x]->start_pos_y;
+                            }
                         }
                     }
                 }
@@ -185,10 +216,10 @@ void game_run(SDL_Renderer** ren, Levels** level, const int animation_count, con
 
     game_kill(&((*level)->entities[(*level)->current_level]), &(*level), (*level)->entities_len[(*level)->current_level], pl_index, coop_pl_index);
 }
-void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_index, int* win_width, int* win_height, const int levels_count, const int debug){
+void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_index, int* win_width, int* win_height, const int levels_count, const int coop, const int debug){
     printf("Restarting Game ...\n");
     levels_free( level);
-    load_levels( level, levels_count, debug);
+    load_levels( level, levels_count, coop, debug);
     load_texture( ren, level, debug);
     change_window_size(win, level, win_width, win_height);
     printf("Restart Complete\n");
@@ -216,12 +247,12 @@ void load_texture(SDL_Renderer** ren, Levels** levels, int debug){
 
             for (int s = 0, d = direction; s < size; s = s + 2, d++){
                 style = 0;
-                char* address_1 = get_address((*levels)->entities[lc][e], d, style);
+                char* address_1 = get_address((*levels)->entities[lc][e], *levels, lc, d, style);
                 (*levels)->entities[lc][e]->textures[s] = SDL_CreateTextureFromSurface( *ren, IMG_Load(address_1));
                 check_texture_error((*levels)->entities[lc][e]->textures[s]);
 
                 style = 1;
-                char* address_2 = get_address((*levels)->entities[lc][e], d, style);
+                char* address_2 = get_address((*levels)->entities[lc][e], *levels, lc, d, style);
                 (*levels)->entities[lc][e]->textures[(s + 1)] = SDL_CreateTextureFromSurface( *ren, IMG_Load(address_2));
                 check_texture_error((*levels)->entities[lc][e]->textures[(s + 1)]);
 
@@ -235,8 +266,9 @@ void load_texture(SDL_Renderer** ren, Levels** levels, int debug){
         }
     }
 }
-void load_levels(Levels** levels, const int levels_count, const int debug){
+void load_levels(Levels** levels, const int levels_count, const int coop, const int debug){
     (*levels) = levels_new( levels_count, 4, 2);
+    (*levels)->coop = coop;
     for (int lc = 0; lc < levels_count; lc++){       
         char address[100]; address[0] = '\0'; strcat(address, "res/levels/level0"); 
         char str[10]; sprintf(str, "%i", lc + 1); strcat(address, str); strcat(address, ".txt\0");
