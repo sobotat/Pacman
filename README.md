@@ -1,3 +1,7 @@
+![Size](https://img.shields.io/github/repo-size/sobotat/Pacman?style=for-the-badge)
+![Version](https://img.shields.io/github/v/release/sobotat/Pacman?style=for-the-badge)
+![Downloads](https://img.shields.io/github/downloads/sobotat/Pacman/total?color=%23&style=for-the-badge)
+
 # PACMAN Game
 Made by: Tomáš Sobota
 
