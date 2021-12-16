@@ -17,14 +17,14 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 
 ---
 
-### Screenshots
+## Screenshots
 ![Game](/res/pacman_art.png)
 
 ![GameCoop](/res/pacman_art_coop.png)
 
 ---
 
-### How to install and run
+## How to install and run
 1. Install SDL libs:
 
     - Debian, Ubuntu.. :
@@ -43,7 +43,7 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 
 ---
 
-### Changelog:
+## Changelog:
     - v1.0
         - dropping the full version of the game
     - v1.1 
@@ -56,7 +56,7 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 
 ---
 
-### Controls:
+## Controls:
 |key  |info                                         |
 |:---:|:--------------------------------------------|
 |wsad |*movement of player, start game*             |
@@ -67,7 +67,7 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 
 ---
 
-### Arguments:
+## Arguments:
 
 1. **coop_mode** - to enable coop mode write 1 (default is 0)
 2. **move_speed** - change move speed (default is 4), 
@@ -77,7 +77,7 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 
 ---
 
-### Map editing:
+## Map editing:
     a player 'p' is needed in the map to run the game properly !!!
     maps can be modified in folder "res/levels"
     
