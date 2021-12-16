@@ -1,6 +1,5 @@
 ![Size](https://img.shields.io/github/repo-size/sobotat/Pacman?style=for-the-badge)
 ![Version](https://img.shields.io/github/v/release/sobotat/Pacman?style=for-the-badge)
-![Downloads](https://img.shields.io/github/downloads/sobotat/Pacman/total?color=%23&style=for-the-badge)
 
 # PACMAN Game
 Made by: Tomáš Sobota
@@ -25,11 +24,15 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 ---
 
 ## How to install and run
+### How to run on Linux
+<details>
+<summary>Show</summary>
+
 1. Install SDL libs:
 
-    - Debian, Ubuntu.. :
+    - Debian, Ubuntu:
         ```bash
-        $ sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev cmake pkg-config
+        $ sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
         ```
 2. Build it
     ```bash
@@ -40,6 +43,27 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
     ```bash
     $ ./pacman
     ```
+</details>
+
+### How to run on Windows 11
+<details>
+<summary>Show</summary>
+
+1. Install **wsl** in Powershell
+    ```bash
+    C:\> wsl --install
+    ```
+
+2. Install **Ubuntu**
+   ```bash
+    C:\> wsl --install -d Ubuntu
+   ```
+
+3. Run **wsl**, after that you will have full Ubuntu terminal
+   ```bash
+    C:\> wsl
+   ```
+</details>
 
 ---
 
@@ -57,23 +81,24 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 ---
 
 ## Controls:
-|key  |info                                         |
-|:---:|:--------------------------------------------|
-|wsad |*movement of player, start game*             |
-|space|*start the game*                             |
-|esc  |*pause the game*                             |
-|r    |*restart the game*                           |
-|l    |*Level changing (only for level checking :D)*|
+|Key     |Info                                         |
+|:------:|:--------------------------------------------|
+|arrows  |*movement of player, start game*             |
+|w,s,a,d |*movement of co_player*             |
+|space   |*start the game*                             |
+|esc     |*pause the game*                             |
+|r       |*restart the game*                           |
+|l       |*Level changing (only for level checking :D)*|
 
 ---
 
 ## Arguments:
-
-1. **coop_mode** - to enable coop mode write 1 (default is 0)
-2. **move_speed** - change move speed (default is 4), 
-                    maximum recomended speed is 15, 0 to use default number 
-3. **maps_size** - number of levels to load (default is 3), 0 to use default number
-4. **debug** - choose 0 or 1 to enable debug mode (default is 0)
+|Num|Argument   |Info                 |Default |On  |
+|:---:|:---------:|:--------------------|-------:|---:|
+|**1**|coop_mode  |*enable coop mode*   |0       |1   |
+|**2**|move_speed |*change move speed*  |0, 4    |1-15|
+|**3**|maps_size  |*number of levels*   |0, 3    |1-99|
+|**4**|debug      |*enable debug mode*  |0       |1   |
 
 ---
 
