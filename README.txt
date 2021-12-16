@@ -60,7 +60,7 @@ Map editing:
 
 Arguments:
     1. coop_mode - to enable coop mode write 1 (default is 0)
-    2. move_speed - chance move speed (default is 4), 
+    2. move_speed - change move speed (default is 4), 
                     maximum recomended speed is 15, 0 to use default number 
     3. maps_size - number of levels to load (default is 3), 0 to use default number
     4. debug - choose 0 or 1 to enable debug mode (default is 0)
