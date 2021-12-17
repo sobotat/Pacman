@@ -33,7 +33,7 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
             sprintf(score_str, "P1: %5d    P2: %5d", level->score, level->coop_score);
         }
 
-        SDL_Surface* surface_message = TTF_RenderText_Solid(level->fonts[0], score_str, color);
+        SDL_Surface* surface_message = TTF_RenderText_Solid(level->fonts[1], score_str, color);
         *texture_score = SDL_CreateTextureFromSurface(*ren, surface_message);
         SDL_FreeSurface(surface_message);
         free(score_str);
@@ -55,16 +55,16 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
         if(level->game_win == 1){
             if (level->current_level == level->maps_len - 1){
                 SDL_Color color = {50,200,50};
-                surface_message = TTF_RenderText_Solid(level->fonts[0], "Game Win", color);
+                surface_message = TTF_RenderText_Solid(level->fonts[1], "Game Win", color);
             }else{
                 SDL_Color color = {255,128,0};
-                surface_message = TTF_RenderText_Solid(level->fonts[0], "Level Win", color);
+                surface_message = TTF_RenderText_Solid(level->fonts[1], "Level Win", color);
             }
             rect.y = 20;
             rect.h = 40;
         }else if(level->game_win == -1){
             SDL_Color color = {255,0,0};
-            surface_message = TTF_RenderText_Solid(level->fonts[0], "Game Over", color);
+            surface_message = TTF_RenderText_Solid(level->fonts[1], "Game Over", color);
             rect.y = 20;
             rect.h = 40;
         }else{
@@ -74,7 +74,7 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
             char str[10];
             sprintf(str, "%1i", level->current_level + 1);
             level_str = strcat(level_str, str);
-            surface_message = TTF_RenderText_Solid(level->fonts[0], level_str, color);
+            surface_message = TTF_RenderText_Solid(level->fonts[1], level_str, color);
             
             rect.y = 28;
             rect.h = 26;

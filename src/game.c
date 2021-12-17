@@ -253,7 +253,7 @@ void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_i
 
 void load_texture(SDL_Renderer** ren, Levels** levels, int debug){
     (*levels)->fonts[0] = TTF_OpenFont("res/fonts/BebasNeue-Regular.ttf", 128);
-    (*levels)->fonts[1] = TTF_OpenFont("res/fonts/Comfortaa-Bold.ttf", 128);
+    (*levels)->fonts[1] = TTF_OpenFont("res/fonts/Orbitron-ExtraBold.ttf", 400);
     check_font_error((*levels)->fonts[0]); check_font_error((*levels)->fonts[1]);
 
     (*levels)->textures[0] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/charge.png"));
