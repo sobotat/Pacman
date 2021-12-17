@@ -5,23 +5,26 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
 
     // HP
     // Heart colors 75 150 142 / 50 135 125    
-    for (int h = 0, x = win_width - 70; h < level->lives; h++, x -= 40){
+    for (int h = 0, x = win_width - 40; h < level->lives; h++, x -= 15){
         rect.x = x;
         rect.y = 20;
-        rect.w = 40;
+        rect.w = 20;
         rect.h = 40;
-        check_texture_error(level->textures[1]);
-        SDL_RenderCopy(*ren, level->textures[1], NULL, &rect);
+        check_texture_error(level->textures[1]); check_texture_error(level->textures[2]);
+        if(level->charge_time == 1)
+            SDL_RenderCopy(*ren, level->textures[2], NULL, &rect);
+        else
+            SDL_RenderCopy(*ren, level->textures[1], NULL, &rect);
     }
 
     // Score
     if(create_new == 1){
         SDL_DestroyTexture(*texture_score);
-        SDL_Color color = {75,150,142};
+        SDL_Color color = {239,162,26};
         if (level->charge_time == 1){
-            color.r = 0;
-            color.g = 49;
-            color.b = 255;
+            color.r = 119;
+            color.g = 231;
+            color.b = 247;
         }
         char* score_str = malloc(sizeof(char) * 100); score_str[0] = '\0';
         if(level->coop == 0)
@@ -65,7 +68,7 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
             rect.y = 20;
             rect.h = 40;
         }else{
-            SDL_Color color = {75,150,142};
+            SDL_Color color = {239,162,26};
             level_str = strcat(level_str, "Level: ");
 
             char str[10];
@@ -87,14 +90,14 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
 }
 void draw_background(SDL_Renderer** ren ,const int win_width, const int win_height){
     SDL_Rect rect;
-    SDL_SetRenderDrawColor(*ren, 35, 45, 44, 255);               // 40 50 60
+    SDL_SetRenderDrawColor(*ren, 25, 25, 25, 255);               // 40 50 60
     rect.x = 0;
     rect.y = 0;
     rect.w = win_width;
     rect.h = win_height;
     SDL_RenderFillRect(*ren, &rect);
 
-    SDL_SetRenderDrawColor(*ren, 55, 65, 64, 255);                 // 60 70 80     
+    SDL_SetRenderDrawColor(*ren, 39, 44, 48, 255);                 // 60 70 80     
     rect.x = 15;
     rect.y = 15;
     rect.w = win_width - 30;
@@ -141,23 +144,74 @@ void draw_level(SDL_Renderer** ren, Entity** entities, const int entities_len, L
     for (int y = 0; y < (*level)->maps_size_y[(*level)->current_level]; y++){
         for (int x = 0; x < (*level)->maps_size_x[(*level)->current_level]; x++){
             char letter = (*level)->maps[(*level)->current_level][to_1d(x, y, (*level)->maps_size_y[(*level)->current_level])];
-            if (letter == '#' || letter == '-'){        
-                if (letter == '-'){
-                    rect.y = wall_y + 10;
-                    rect.h = 10;
-                    SDL_SetRenderDrawColor(*ren, 100, 100, 100, 255);
-                }else{
-                    rect.y = wall_y;
-                    rect.h = 30;
-                    SDL_SetRenderDrawColor(*ren, 42, 44, 43, 255);          // 30 30 30
-                }
+            if (letter == '#' || letter == '-'){   
+
                 rect.x = wall_x;
-                rect.w = 30;
-                SDL_RenderFillRect(*ren, &rect);                    
+                rect.y = wall_y;
+                rect.w = 30;  
+                rect.h = 30;
+
+                if (letter == '-'){                    
+                    check_texture_error((*level)->textures[11]);
+                    SDL_RenderCopy(*ren, (*level)->textures[11], NULL, &rect);
+                }else{
+                    char left = '/', right = '/', top = '/', down = '/';
+                    if(x > 0)
+                        left = (*level)->maps[(*level)->current_level][to_1d(x - 1, y, (*level)->maps_size_y[(*level)->current_level])];
+                    if(x < (*level)->maps_size_x[(*level)->current_level] - 1)
+                        right = (*level)->maps[(*level)->current_level][to_1d(x + 1, y, (*level)->maps_size_y[(*level)->current_level])];
+                    if(y > 0)
+                        top = (*level)->maps[(*level)->current_level][to_1d(x, y - 1, (*level)->maps_size_y[(*level)->current_level])];
+                    if(y < (*level)->maps_size_y[(*level)->current_level] - 1)
+                        down = (*level)->maps[(*level)->current_level][to_1d(x, y + 1, (*level)->maps_size_y[(*level)->current_level])];
+                    
+                    check_texture_error((*level)->textures[5]); check_texture_error((*level)->textures[6]); 
+                    check_texture_error((*level)->textures[7]); check_texture_error((*level)->textures[8]); 
+                    check_texture_error((*level)->textures[9]); check_texture_error((*level)->textures[10]); 
+                    
+                    
+                    if(left == '#' && right == '#' && top == '#' && down == '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[8], NULL, &rect, 0, 0, 0);
+                    }else if(left != '#' && right != '#' && top != '#' && down != '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[10], NULL, &rect, 0, 0, 0);
+                    }else if(left == '#' && right == '#' && top == '#' && down != '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[7], NULL, &rect, 0, 0, SDL_FLIP_VERTICAL);
+                    }else if(left == '#' && right == '#' && top != '#' && down == '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[7], NULL, &rect, 0, 0, 0);
+                    }else if(left == '#' && right != '#' && top == '#' && down == '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[7], NULL, &rect, 90, 0, 0);
+                    }else if(left != '#' && right == '#' && top == '#' && down == '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[7], NULL, &rect, 270, 0, 0);
+                    }else if(right == '#' && down == '#'){
+                        SDL_RenderCopy(*ren, (*level)->textures[6], NULL, &rect);
+                    }else if(left == '#' && down == '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[6], NULL, &rect, 0, 0, SDL_FLIP_HORIZONTAL);
+                    }else if(left == '#' && top == '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[6], NULL, &rect, 0, 0, SDL_FLIP_VERTICAL | SDL_FLIP_HORIZONTAL);
+                    }else if(right == '#' && top == '#'){
+                        SDL_RenderCopyEx(*ren, (*level)->textures[6], NULL, &rect, 0, 0, SDL_FLIP_VERTICAL);
+                    }else if(top == '#' || down == '#'){
+                        if(top != '#')
+                            SDL_RenderCopyEx(*ren, (*level)->textures[9], NULL, &rect, 0, 0, 0);
+                        else if(down != '#')
+                            SDL_RenderCopyEx(*ren, (*level)->textures[9], NULL, &rect, 180, 0, 0);
+                        else
+                            SDL_RenderCopy(*ren, (*level)->textures[5], NULL, &rect);
+                    }else if(left == '#' || right == '#'){
+                        if(left != '#')
+                            SDL_RenderCopyEx(*ren, (*level)->textures[9], NULL, &rect, 270, 0, 0);
+                        else if(right != '#')
+                            SDL_RenderCopyEx(*ren, (*level)->textures[9], NULL, &rect, 90, 0, 0);
+                        else
+                            SDL_RenderCopyEx(*ren, (*level)->textures[5], NULL, &rect, 90, 0, 0);
+                    }
+                    //SDL_RenderCopy(*ren, (*level)->textures[4], NULL, &rect);
+                }                
+                                   
             }else if (letter == '.'){
                 no_points_left = 0;
 
-                SDL_SetRenderDrawColor(*ren, 189, 195, 199, 255);        // 150 150 50 
+                SDL_SetRenderDrawColor(*ren, 119, 231, 247, 255);        // 150 150 50 
                 rect.x = wall_x + 12;
                 rect.y = wall_y + 12;
                 rect.w = 6;
@@ -187,9 +241,9 @@ void draw_level(SDL_Renderer** ren, Entity** entities, const int entities_len, L
                     rect.h = 30;
 
                     if(x < (*level)->maps_size_x[(*level)->current_level]/ 2)
-                        SDL_RenderCopy(*ren, (*level)->textures[(*level)->entities[0][0]->style + 2], NULL, &rect);
+                        SDL_RenderCopy(*ren, (*level)->textures[2], NULL, &rect);
                     else
-                        SDL_RenderCopyEx(*ren, (*level)->textures[((*level)->entities[0][0]->style + 2)], NULL, &rect, 0, 0, SDL_FLIP_HORIZONTAL);
+                        SDL_RenderCopyEx(*ren, (*level)->textures[2], NULL, &rect, 0, 0, SDL_FLIP_HORIZONTAL);
                     
                 }
 

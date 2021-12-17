@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.cps": "javascript",
+        "sdl_image.h": "c"
+    }
+}

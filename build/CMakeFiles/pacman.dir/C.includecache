@@ -6,41 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c
-SDL.h
--
-SDL_image.h
--
-SDL_ttf.h
--
-stdbool.h
--
-stdlib.h
--
-src/lib/sdl_playground.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/sdl_playground.h
-src/lib/draw.h
+/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c
+lib/draw.h
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/draw.h
-src/lib/entity.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/entity.h
-src/lib/level.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/level.h
-src/lib/api.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/api.h
-src/lib/ai.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/ai.h
-src/lib/game.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/game.h
-
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/ai.h
-stdlib.h
--
-entity.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/entity.h
-level.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/level.h
-game.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/game.h
 
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/api.h
 SDL.h
@@ -76,26 +44,6 @@ SDL.h
 SDL_ttf.h
 -
 
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/game.h
-stdbool.h
--
-SDL.h
--
-SDL_image.h
--
-SDL_ttf.h
--
-entity.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/entity.h
-level.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/level.h
-api.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/api.h
-ai.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/ai.h
-draw.h
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/draw.h
-
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/level.h
 stdbool.h
 -
@@ -105,14 +53,6 @@ SDL_ttf.h
 -
 entity.h
 /mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/entity.h
-
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/lib/sdl_playground.h
-stdbool.h
--
-SDL.h
--
-SDL_ttf.h
--
 
 /usr/include/SDL2/SDL.h
 SDL_main.h
@@ -369,16 +309,6 @@ close_code.h
 /usr/include/SDL2/SDL_hints.h
 SDL_stdinc.h
 /usr/include/SDL2/SDL_stdinc.h
-begin_code.h
-/usr/include/SDL2/begin_code.h
-close_code.h
-/usr/include/SDL2/close_code.h
-
-/usr/include/SDL2/SDL_image.h
-SDL.h
-/usr/include/SDL2/SDL.h
-SDL_version.h
-/usr/include/SDL2/SDL_version.h
 begin_code.h
 /usr/include/SDL2/begin_code.h
 close_code.h
