@@ -253,15 +253,30 @@ void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_i
 
 void load_texture(SDL_Renderer** ren, Levels** levels, int debug){
     (*levels)->fonts[0] = TTF_OpenFont("res/fonts/BebasNeue-Regular.ttf", 128);
-    (*levels)->fonts[1] = TTF_OpenFont("res/fonts/Comfortaa-Bold.ttf", 128);
+    (*levels)->fonts[1] = TTF_OpenFont("res/fonts/Orbitron-ExtraBold.ttf", 400);
     check_font_error((*levels)->fonts[0]); check_font_error((*levels)->fonts[1]);
 
     (*levels)->textures[0] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/charge.png"));
-    (*levels)->textures[1] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/heart.png"));
-    (*levels)->textures[2] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/teleport1.png"));
-    (*levels)->textures[3] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/teleport2.png"));
+    (*levels)->textures[1] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/life1.png"));
+    (*levels)->textures[2] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/life2.png"));
+    (*levels)->textures[3] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/teleport1.png"));
+    (*levels)->textures[4] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/teleport2.png"));
     check_texture_error((*levels)->textures[0]); check_texture_error((*levels)->textures[1]);
     check_texture_error((*levels)->textures[2]); check_texture_error((*levels)->textures[3]);
+    check_texture_error((*levels)->textures[4]);
+
+    // Walls
+    (*levels)->textures[5] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/walls/wall_straight.png"));
+    (*levels)->textures[6] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/walls/wall_curve.png"));
+    (*levels)->textures[7] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/walls/wall_tcross.png"));
+    (*levels)->textures[8] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/walls/wall_cross.png"));
+    (*levels)->textures[9] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/walls/wall_end.png"));
+    (*levels)->textures[10] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/walls/wall_point.png"));
+    (*levels)->textures[11] = SDL_CreateTextureFromSurface( *ren, IMG_Load("res/walls/wall_doors.png"));
+    check_texture_error((*levels)->textures[5]); check_texture_error((*levels)->textures[6]);
+    check_texture_error((*levels)->textures[7]); check_texture_error((*levels)->textures[8]);
+    check_texture_error((*levels)->textures[9]); check_texture_error((*levels)->textures[10]); 
+    check_texture_error((*levels)->textures[11]); 
 
     for (int lc = 0; lc < (*levels)->maps_len; lc++){
         for (int e = 0; e < (*levels)->entities_len[lc]; e++){
@@ -293,7 +308,7 @@ void load_texture(SDL_Renderer** ren, Levels** levels, int debug){
     }
 }
 void load_levels(Levels** levels, const int levels_count, const int coop, const int debug){
-    (*levels) = levels_new( levels_count, 4, 2);
+    (*levels) = levels_new( levels_count, 12, 2);
     (*levels)->coop = coop;
     for (int lc = 0; lc < levels_count; lc++){       
         char address[100]; address[0] = '\0'; strcat(address, "res/levels/level0"); 

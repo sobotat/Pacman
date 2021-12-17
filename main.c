@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     int win_width = 810, win_height = 505;
     int scale = 60, move_speed = 4, fps = 0; //, move_scale = scale/move_speed
     int animation_count = 0, animation_freq = scale/6/2;
-    int levels_count = 3, coop = 0;
+    int levels_count = 4, coop = 0;
 
     //Args
     get_args( argc, argv, &coop, &move_speed, &levels_count, &debug);

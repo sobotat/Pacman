@@ -2,9 +2,12 @@
 
 void go_left(Entity** entity, Levels* level, const char to_left, const char to_right, const char to_up, const char to_down, const int scale, const int move_speed, const int animation_count, const int animation_freq){
     if( to_left != '#' || ( (((int)(round(((*entity)->pos_x - (move_speed * (1 / (double)scale))) * 100))) >= (int)(round((*entity)->pos_x) * 100)) && to_left == '#')){
-        if(level->charge_time == 0 || (*entity)->type == 'p')
-            (*entity)->pos_x -= move_speed * (1 / (double)scale);
-        else
+        if(level->charge_time == 0 || (*entity)->type == 'p'){
+            if ((*entity)->type == 'p')
+                (*entity)->pos_x -= move_speed * (1 / (double)scale);
+            else
+                (*entity)->pos_x -= move_speed * ((1 / (double)scale) * 7 / 8);
+        }else
             (*entity)->pos_x -= move_speed * ((1 / (double)scale) * 1 / 2);
         (*entity)->pos_y = round((*entity)->pos_y);
 
@@ -26,9 +29,12 @@ void go_left(Entity** entity, Levels* level, const char to_left, const char to_r
 }
 void go_right(Entity** entity, Levels* level, const char to_left, const char to_right, const char to_up, const char to_down, const int scale, const int move_speed, const int animation_count, const int animation_freq){
     if(to_right != '#' || ( (((int)(round(((*entity)->pos_x + (move_speed * (1 / (double)scale))) * 100))) <= (int)(round((*entity)->pos_x) * 100)) && to_right == '#')){
-        if(level->charge_time == 0 || (*entity)->type == 'p')
-            (*entity)->pos_x += move_speed * (1 / (double)scale);
-        else
+        if(level->charge_time == 0 || (*entity)->type == 'p'){
+            if ((*entity)->type == 'p')
+                (*entity)->pos_x += move_speed * (1 / (double)scale);
+            else
+                (*entity)->pos_x += move_speed * ((1 / (double)scale) * 7 / 8);
+        }else
             (*entity)->pos_x += move_speed * ((1 / (double)scale) * 1 / 2);
         (*entity)->pos_y = round((*entity)->pos_y);
 
@@ -48,9 +54,12 @@ void go_right(Entity** entity, Levels* level, const char to_left, const char to_
 }
 void go_up(Entity** entity, Levels* level, const char to_left, const char to_right, const char to_up, const char to_down, const int scale, const int move_speed, const int animation_count, const int animation_freq){
         if( to_up != '#' || ( (((int)(round(((*entity)->pos_y - (move_speed * (1 / (double)scale))) * 100))) >= (int)(round((*entity)->pos_y) * 100)) && to_up == '#')){
-        if(level->charge_time == 0 || (*entity)->type == 'p')
-            (*entity)->pos_y -= move_speed * (1 / (double)scale);
-        else
+        if(level->charge_time == 0 || (*entity)->type == 'p'){
+            if ((*entity)->type == 'p')
+                (*entity)->pos_y -= move_speed * (1 / (double)scale);
+            else
+                (*entity)->pos_y -= move_speed * ((1 / (double)scale) * 7 / 8);
+        }else
             (*entity)->pos_y -= move_speed * ((1 / (double)scale) * 1 / 2);
         (*entity)->pos_x = round((*entity)->pos_x);
         
@@ -70,9 +79,12 @@ void go_up(Entity** entity, Levels* level, const char to_left, const char to_rig
 }
 void go_down(Entity** entity, Levels* level,const char to_left, const char to_right, const char to_up, const char to_down, const int scale, const int move_speed, const int animation_count, const int animation_freq){
     if(((to_down != '#' && to_down != '-') || ( (((int)(round(((*entity)->pos_y + (move_speed * (1 / (double)scale))) * 100))) <= (int)(round((*entity)->pos_y) * 100))) && (to_down == '#' || to_down == '-'))){
-        if(level->charge_time == 0 || (*entity)->type == 'p')
-            (*entity)->pos_y += move_speed * (1 / (double)scale);
-        else
+        if(level->charge_time == 0 || (*entity)->type == 'p'){
+            if ((*entity)->type == 'p')
+                (*entity)->pos_y += move_speed * (1 / (double)scale);
+            else
+                (*entity)->pos_y += move_speed * ((1 / (double)scale) * 7 / 8);
+        }else
             (*entity)->pos_y += move_speed * ((1 / (double)scale) * 1 / 2);
         (*entity)->pos_x = round((*entity)->pos_x);
         

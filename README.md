@@ -10,16 +10,16 @@ Made by: Tomáš Sobota
 
 The Pacman game originated as a college programming project.
 
-There are 3 levels in the game, dangerous ghosts and, most importantly, the chance to experience the old days as in the creation of the original Pacman.
+There are 4 levels in the game, dangerous ghosts and, most importantly, the chance to experience the old days as in the creation of the original Pacman.
 
 **Have a nice play**
 
 ---
 
 ## Screenshots
-![Game](/res/pacman_art.png)
+![Game](/art/pacman_art_v1.2_1.png)
 
-![GameCoop](/res/pacman_art_coop.png)
+![GameCoop](/art/pacman_art_v1.2_2.png)
 
 ---
 
@@ -68,6 +68,9 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 ---
 
 ## Changelog:
+<details>    
+<summary>Show</summary>
+
     - v1.0
         - dropping the full version of the game
     - v1.1 
@@ -77,6 +80,10 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
         - coop score was added
         - score of killing ghosts divided into players
         - added coop score to hud
+    - v1.2
+        - design overhaul
+        - added new maps
+</details>
 
 ---
 
@@ -97,7 +104,7 @@ There are 3 levels in the game, dangerous ghosts and, most importantly, the chan
 |:---:|:---------:|:--------------------|-------:|---:|
 |**1**|coop_mode  |*enable coop mode*   |0       |1   |
 |**2**|move_speed |*change move speed*  |0, 4    |1-15|
-|**3**|maps_size  |*number of levels*   |0, 3    |1-99|
+|**3**|maps_size  |*number of levels*   |0, 4    |1-99|
 |**4**|debug      |*enable debug mode*  |0       |1   |
 
 ---
