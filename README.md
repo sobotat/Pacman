@@ -25,8 +25,18 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
 
 ## How to install and run
 ### How to run on Linux
+1. Use install script
+    ```bash
+    $ ./install.sh
+    ```
+2. Run it
+   ```bash
+    $ cd build
+    $ ./pacman
+    ```
+
 <details>
-<summary>Show</summary>
+<summary>Manualy</summary>
 
 1. Install SDL libs:
 
@@ -83,6 +93,9 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
     - v1.2
         - design overhaul
         - added new maps
+    - v1.2.1
+        - added install script
+
 </details>
 
 ---
