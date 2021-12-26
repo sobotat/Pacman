@@ -1,10 +1,141 @@
 #include "lib/draw.h"
 
+void draw_start_screen(SDL_Renderer** ren, Levels* level, const int win_width, const int win_height, const int time, const int create_new){
+    SDL_Rect rect;
+
+    rect.x = 0; rect.y = 0;
+    rect.w = win_width; rect.h = win_height;
+    SDL_SetRenderDrawColor(*ren, 25, 25, 25, 255); 
+    SDL_RenderFillRect(*ren, &rect);
+
+    rect.x = win_width/2 - 240; rect.y = 40;
+    rect.w = 480; rect.h = win_height - 80;
+    SDL_SetRenderDrawColor(*ren, 39, 44, 48, 255); 
+    SDL_RenderFillRect(*ren, &rect);
+    SDL_SetRenderDrawColor(*ren, 239, 162, 26, 255);
+    SDL_RenderDrawRect(*ren, &rect);
+
+    // Game Name
+    if(create_new == 1){
+        SDL_Color color = {255,128,0};
+        SDL_Surface* surface_message = TTF_RenderText_Solid(level->fonts[1], "Pacman", color);;
+        
+        SDL_Texture* texture_name = SDL_CreateTextureFromSurface(*ren, surface_message);
+        SDL_FreeSurface(surface_message);
+        
+        rect.x = win_width/2 - 200; rect.y = 60;
+        rect.w = 400; rect.h = 60;
+        SDL_RenderCopy(*ren, texture_name, NULL, &rect);    
+        SDL_DestroyTexture(texture_name);
+    }
+
+    // 
+    if(time % 2 != 0){
+        SDL_Color color = {200,200,200};
+        SDL_Surface* surface_message = TTF_RenderText_Solid(level->fonts[1], "Press < Space >", color);;
+        
+        SDL_Texture* texture_name = SDL_CreateTextureFromSurface(*ren, surface_message);
+        SDL_FreeSurface(surface_message);
+        
+        rect.x = win_width/2 - 80; rect.y = win_height - 80;
+        rect.w = 190; rect.h = 25;
+        SDL_RenderCopy(*ren, texture_name, NULL, &rect);    
+        SDL_DestroyTexture(texture_name);
+    }
+}
+void draw_finish_screen(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** texture_win, SDL_Texture** texture_continue, Levels* level, const int win_width, const int win_height, const int time, const int create_new){
+    SDL_Rect rect;
+
+    rect.x = 0; rect.y = 0;
+    rect.w = win_width; rect.h = win_height;
+    SDL_SetRenderDrawColor(*ren, 25, 25, 25, 255); 
+    SDL_RenderFillRect(*ren, &rect);
+
+    rect.x = win_width/2 - 240; rect.y = win_height/2 - 90;
+    rect.w = 480; rect.h = 180;
+    SDL_SetRenderDrawColor(*ren, 39, 44, 48, 255); 
+    SDL_RenderFillRect(*ren, &rect);
+    SDL_SetRenderDrawColor(*ren, 239, 162, 26, 255);
+    SDL_RenderDrawRect(*ren, &rect);
+    
+    // Score
+    if(create_new == 1){
+        SDL_DestroyTexture(*texture_score);
+        SDL_Color color = {239,162,26};
+        char* score_str = malloc(sizeof(char) * 100); score_str[0] = '\0';
+
+        if(level->coop == 0)
+            sprintf(score_str, "Score: %5d", level->score);
+        else{
+            sprintf(score_str, "P1: %5d    P2: %5d", level->score, level->coop_score);
+        }
+
+        SDL_Surface* surface_message = TTF_RenderText_Solid(level->fonts[1], score_str, color);
+        *texture_score = SDL_CreateTextureFromSurface(*ren, surface_message);
+        SDL_FreeSurface(surface_message);
+        free(score_str);
+    }
+    rect.x = win_width/2 - 100; rect.y = win_height/2 + 30; rect.w = 200; rect.h = 40;
+    SDL_RenderCopy(*ren, *texture_score, NULL, &rect);
+
+
+    // Win/Lost
+    if(create_new == 1){
+        SDL_DestroyTexture(*texture_win);
+        SDL_Surface* surface_message;
+
+        if(level->game_win == 1){
+            if (level->current_level == level->maps_len - 1){
+                SDL_Color color = {50,200,50};
+                surface_message = TTF_RenderText_Solid(level->fonts[1], "Game Win", color);
+            }else{
+                SDL_Color color = {255,128,0};
+                surface_message = TTF_RenderText_Solid(level->fonts[1], "Level Win", color);
+            }
+        }else if(level->game_win == -1){
+            SDL_Color color = {255,0,0};
+            surface_message = TTF_RenderText_Solid(level->fonts[1], "Game Over", color);            
+        }
+
+        if(level->game_win != 0){
+            *texture_win = SDL_CreateTextureFromSurface(*ren, surface_message);
+            SDL_FreeSurface(surface_message);
+        }
+    }
+    if(level->game_win != 0){
+        rect.x = win_width/2 - 200;
+        rect.y = win_height/2 - 70;            
+        rect.w = 400;
+        rect.h = 80;
+        SDL_RenderCopy(*ren, *texture_win, NULL, &rect);    
+    }
+
+    if(level->game_win == 1 && (level->maps_len -1 != level->current_level)){
+        if(create_new == 1){
+            SDL_DestroyTexture(*texture_continue);
+            SDL_Surface* surface_message;
+            char* time_str = malloc(sizeof(char) * 100); time_str[0] = '\0';
+
+            SDL_Color color = {239,162,26};
+            sprintf(time_str, "Continue in %2i", time);
+            surface_message = TTF_RenderText_Solid(level->fonts[1], time_str, color);
+            
+            rect.y = win_height - 36; rect.h = 24;
+            *texture_continue = SDL_CreateTextureFromSurface(*ren, surface_message);
+            
+            free(time_str);
+            SDL_FreeSurface(surface_message);
+        }   
+        rect.x = win_width/2 - 80;
+        rect.w = 160;
+        SDL_RenderCopy(*ren, *texture_continue, NULL, &rect);    
+    }
+}
+
 void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** texture_win, Levels* level, const int win_width, const int create_new){
     SDL_Rect rect;
 
-    // HP
-    // Heart colors 75 150 142 / 50 135 125    
+    // HP 
     for (int h = 0, x = win_width - 40; h < level->lives; h++, x -= 15){
         rect.x = x;
         rect.y = 20;
@@ -46,28 +177,13 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
     
     SDL_RenderCopy(*ren, *texture_score, NULL, &rect);
 
-    // Win/Lost - Level
+    // Level
     if(create_new == 1){
         SDL_DestroyTexture(*texture_win);
         SDL_Surface* surface_message;
         char* level_str = malloc(sizeof(char) * 100); level_str[0] = '\0';
 
-        if(level->game_win == 1){
-            if (level->current_level == level->maps_len - 1){
-                SDL_Color color = {50,200,50};
-                surface_message = TTF_RenderText_Solid(level->fonts[1], "Game Win", color);
-            }else{
-                SDL_Color color = {255,128,0};
-                surface_message = TTF_RenderText_Solid(level->fonts[1], "Level Win", color);
-            }
-            rect.y = 20;
-            rect.h = 40;
-        }else if(level->game_win == -1){
-            SDL_Color color = {255,0,0};
-            surface_message = TTF_RenderText_Solid(level->fonts[1], "Game Over", color);
-            rect.y = 20;
-            rect.h = 40;
-        }else{
+        if(level->game_win == 0){
             SDL_Color color = {239,162,26};
             level_str = strcat(level_str, "Level: ");
 
@@ -78,8 +194,8 @@ void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** tex
             
             rect.y = 28;
             rect.h = 26;
-        }
-        *texture_win = SDL_CreateTextureFromSurface(*ren, surface_message);
+            *texture_win = SDL_CreateTextureFromSurface(*ren, surface_message);
+        }       
         
         free(level_str);
         SDL_FreeSurface(surface_message);

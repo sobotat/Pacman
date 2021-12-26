@@ -9,6 +9,9 @@
 #include "entity.h"
 #include "api.h"
 
+void draw_start_screen(SDL_Renderer** ren, Levels* level, const int win_width, const int win_height, const int time, const int create_new);
+void draw_finish_screen(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** texture_win, SDL_Texture** texture_continue, Levels* level, const int win_width, const int win_height, const int time, const int create_new);
+
 void draw_hud(SDL_Renderer** ren, SDL_Texture** texture_score, SDL_Texture** texture_win, Levels* level, const int win_width, const int create_new);
 void draw_background(SDL_Renderer** ren ,const int win_width, const int win_height);
 void draw_entity(SDL_Renderer** ren, Entity* entity, Levels* level);

@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
     
     SDL_Window * win = NULL;
     SDL_Renderer * ren = NULL;
-    SDL_Texture* score_texture = NULL; SDL_Texture* win_texture = NULL;
+    SDL_Texture* score_texture = NULL; SDL_Texture* win_texture = NULL; SDL_Texture* continue_texture = NULL;
 
     bool initialized = sdl_playground_init( &win, &ren, win_width, win_height);
 
@@ -129,33 +129,46 @@ int main(int argc, char** argv) {
             }
         }
 
+        int counter_time = (int)((SDL_GetTicks() - counter)/1000.0f);
         SDL_RenderClear(ren);
-        draw_background(&ren, win_width, win_height);
-        draw_level(&ren, my_levels->entities[my_levels->current_level], my_levels->entities_len[my_levels->current_level], &my_levels, win_width, 1);
+        if(my_levels->game_win == 0){
+            if(my_levels->game_running == 1){
+                draw_background(&ren, win_width, win_height);
+                draw_level(&ren, my_levels->entities[my_levels->current_level], my_levels->entities_len[my_levels->current_level], &my_levels, win_width, 1);
+            }else if(game_started == 0 && my_levels->score == 0 && my_levels->current_level == 0){
+                draw_start_screen(&ren, my_levels, win_width, win_height, counter_time,1);
+            }
+        }else{
+            int continue_time = 4 - counter_time;
+            draw_finish_screen(&ren, &score_texture, &win_texture, &continue_texture, my_levels, win_width, win_height, continue_time, 1);
+        }
 
         if(my_levels->game_running == 1){
             game_run( &ren, &my_levels, animation_count, animation_freq, my_levels->pl_index , my_levels->coop_pl_index, scale, move_speed, debug);
         }
 
-        if(counter >= 2 * scale || my_levels->score != last_score || my_levels->coop_score != last_coop_score || my_levels->lives != last_lives || my_levels->charge_time != last_charge || my_levels->game_win != last_win){
-            draw_hud(&ren, &score_texture, &win_texture, my_levels, win_width, 1);
+        if(counter_time >= 4 || my_levels->score != last_score || my_levels->coop_score != last_coop_score || my_levels->lives != last_lives || my_levels->charge_time != last_charge || my_levels->game_win != last_win){
+            if(my_levels->game_win == 0 && game_started != 0)
+                draw_hud(&ren, &score_texture, &win_texture, my_levels, win_width, 1);            
 
-            if(last_win == my_levels->game_win && my_levels->game_win == 1 && counter >= 2*scale){
+            if(last_win == my_levels->game_win && my_levels->game_win == 1 && counter_time >= 4){
                 if (my_levels->current_level != my_levels->maps_len - 1){
                     game_win(win, &my_levels, &win_width, &win_height);    
                 }
-                counter = 0;
+                counter = SDL_GetTicks();
             }
             if(last_win != my_levels->game_win && my_levels->game_win != 0)
                 my_levels->game_running = 0;
+            if(last_win == my_levels->game_win && my_levels->game_win != 1){
+                counter = SDL_GetTicks();
+            }
             
             last_win = my_levels->game_win;
             last_coop_score = my_levels->coop_score;
             last_score = my_levels->score;
             last_lives = my_levels->lives;
             last_charge = my_levels->charge_time;
-            if((last_win == my_levels->game_win && my_levels->game_win != 1))
-                counter = 0;
+            
             if(debug != 1){
                 printf("\e[1;1H\e[2J");
                 printf("Info:\n");
@@ -166,8 +179,8 @@ int main(int argc, char** argv) {
             }else
                 printf(" Score: %i\t Lives: %i\t Charge %i\t FPS: %i\n", my_levels->score, my_levels->lives, my_levels->charge_time, fps);
         }else{
-            draw_hud(&ren, &score_texture, &win_texture, my_levels, win_width, 0);
-            counter++;
+            if(my_levels->game_win == 0 && game_started != 0)
+                draw_hud(&ren, &score_texture, &win_texture, my_levels, win_width, 0);
         }
         
         SDL_RenderPresent(ren);   
