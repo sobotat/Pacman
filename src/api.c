@@ -25,8 +25,8 @@ char* get_address(Entity* entity, Levels* level, const int level_index, const in
         address = strcat(address, "/npc_");
     else{
         if(level->coop == 1){
-            if( level->entities[level_index][level->coop_pl_index]->pos_x == entity->pos_x && 
-                level->entities[level_index][level->coop_pl_index]->pos_y == entity->pos_y){
+            if( level->entities[level_index][level->coop_pl_index[level->current_level]]->pos_x == entity->pos_x && 
+                level->entities[level_index][level->coop_pl_index[level->current_level]]->pos_y == entity->pos_y){
                 address = strcat(address, "/coplayer_");
             }else
                 address = strcat(address, "/player_");

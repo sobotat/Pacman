@@ -30,30 +30,10 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
     $ ./install.sh
     ```
 2. Run it
-   ```bash
+    ```bash
     $ cd build
     $ ./pacman
     ```
-
-<details>
-<summary>Manualy</summary>
-
-1. Install SDL libs:
-
-    - Debian, Ubuntu:
-        ```bash
-        $ sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
-        ```
-2. Build it
-    ```bash
-    $ make
-    ```
-
-3. Run it
-    ```bash
-    $ ./pacman
-    ```
-</details>
 
 ### How to run on Windows 11
 <details>
@@ -66,12 +46,12 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
 
 2. Install **Ubuntu**
    ```bash
-    C:\> wsl --install -d Ubuntu
+   C:\> wsl --install -d Ubuntu
    ```
 
 3. Run **wsl**, after that you will have full Ubuntu terminal
    ```bash
-    C:\> wsl
+   C:\> wsl
    ```
 </details>
 
@@ -95,6 +75,13 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
         - added new maps
     - v1.2.1
         - added install script
+    - v1.2.2
+        - added Start, Win, Dead screen
+        - added Window Scale (using with - and =)
+        - added new map
+        - improved player movement
+        - fixed player stucking after dead
+        - fixed locating player in level
 
 </details>
 
@@ -104,16 +91,17 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
 |Key     |Info                                         |
 |:------:|:--------------------------------------------|
 |arrows  |*movement of player, start game*             |
-|w,s,a,d |*movement of co_player*             |
+|w,s,a,d |*movement of co_player*                      |
 |space   |*start the game*                             |
 |esc     |*pause the game*                             |
 |r       |*restart the game*                           |
 |l       |*Level changing (only for level checking :D)*|
+|-,=     |*Window size chaning*                        |
 
 ---
 
 ## Arguments:
-|Num|Argument   |Info                 |Default |On  |
+|Num|Argument     |Info                 |Default |On  |
 |:---:|:---------:|:--------------------|-------:|---:|
 |**1**|coop_mode  |*enable coop mode*   |0       |1   |
 |**2**|move_speed |*change move speed*  |0, 4    |1-15|
@@ -132,7 +120,7 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
     size of x and y must be in the first row of the file
 
 ### Legend: 
-|char |info                   |
+|char   |info                 |
 |:-----:|:--------------------|
 |p      |*player*             |
 |c,m,y,r|*ghosts*             |
