@@ -31,8 +31,8 @@ typedef struct{
     int game_win;
 
     int coop;
-    int coop_pl_index;
-    int pl_index;
+    int* coop_pl_index;
+    int* pl_index;
 } Levels;
 
 Levels* levels_new( const int maps_len, const int textures_len, const int fonts_len);

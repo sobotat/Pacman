@@ -9,6 +9,10 @@ Levels* levels_new( const int maps_len, const int textures_len, const int fonts_
     level->maps_len = maps_len;
     level->current_level = 0;
 
+    level->coop = 0;
+    level->coop_pl_index = (int*)malloc(sizeof(int) * maps_len);
+    level->pl_index = (int*)malloc(sizeof(int) * maps_len);
+
     level->entities = malloc(sizeof(Entity***) * 10 * maps_len);
     level->entities_len = malloc(sizeof(int) * maps_len);
     for (int i = 0; i < maps_len; i++){
@@ -16,6 +20,9 @@ Levels* levels_new( const int maps_len, const int textures_len, const int fonts_
         level->entities_len[i] = 0;
         level->maps_size_x[i] = 0;
         level->maps_size_y[i] = 0;
+
+        level->pl_index[i] = -1;
+        level->coop_pl_index[i] = -1;
     }
 
     level->textures = (SDL_Texture**)malloc(sizeof(SDL_Texture*) * textures_len);
@@ -31,11 +38,7 @@ Levels* levels_new( const int maps_len, const int textures_len, const int fonts_
     level->charge_count = 3;
 
     level->game_running = 0;
-    level->game_win = 0;
-
-    level->coop = 0;
-    level->coop_pl_index = -1;
-    level->pl_index = -1;
+    level->game_win = 0;  
 }
 
 void levels_free(Levels** level){

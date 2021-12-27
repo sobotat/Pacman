@@ -16,14 +16,13 @@ void go_left(Entity** entity, Levels* level, const char to_left, const char to_r
     }else if ( ( (((int)(round(((*entity)->pos_x - (move_speed * (1 / (double)scale))) * 100))) < (int)(round((*entity)->pos_x) * 100)) && to_left == '#') &&
             ( ((int)(((*entity)->pos_x) * 100) > (int)(round((*entity)->pos_x) * 100)) ) ){
         (*entity)->pos_x = round((*entity)->pos_x);
-        (*entity)->pos_y = round((*entity)->pos_y);
 
         if(animation_count == animation_freq)
             entity_swap_style(entity);
     }else if( (int)(*entity)->pos_x * 100 > (int)(round((*entity)->pos_x) * 100) && to_left == '#' ){
         (*entity)->pos_x = round((*entity)->pos_x);
-        (*entity)->pos_y = round((*entity)->pos_y);
     }
+    (*entity)->pos_y = round((*entity)->pos_y);
 
     // printf("%.2f %i %i\n", move_speed * (1 / (double)scale), move_speed, scale);
 }
@@ -43,14 +42,13 @@ void go_right(Entity** entity, Levels* level, const char to_left, const char to_
     }else if ( ( (((int)(round(((*entity)->pos_x + (move_speed * (1 / (double)scale))) * 100))) > (int)(round((*entity)->pos_x) * 100)) && to_right == '#') &&
             ( ((int)(((*entity)->pos_x) * 100) < (int)(round((*entity)->pos_x) * 100)) ) ){
         (*entity)->pos_x = round((*entity)->pos_x);
-        (*entity)->pos_y = round((*entity)->pos_y);
 
         if(animation_count == animation_freq)
             entity_swap_style(entity);
     }else if( (int)(*entity)->pos_x * 100 < (int)(round((*entity)->pos_x) * 100) && to_right == '#' ){
         (*entity)->pos_x = round((*entity)->pos_x);
-        (*entity)->pos_y = round((*entity)->pos_y);
     }
+    (*entity)->pos_y = round((*entity)->pos_y);
 }
 void go_up(Entity** entity, Levels* level, const char to_left, const char to_right, const char to_up, const char to_down, const int scale, const int move_speed, const int animation_count, const int animation_freq){
         if( to_up != '#' || ( (((int)(round(((*entity)->pos_y - (move_speed * (1 / (double)scale))) * 100))) >= (int)(round((*entity)->pos_y) * 100)) && to_up == '#')){
@@ -68,14 +66,12 @@ void go_up(Entity** entity, Levels* level, const char to_left, const char to_rig
     }else if ( ( (((int)(round(((*entity)->pos_y - (move_speed * (1 / (double)scale))) * 100))) < (int)(round((*entity)->pos_y) * 100)) && to_up == '#') &&
             ( ((int)(((*entity)->pos_y) * 100) > (int)(round((*entity)->pos_y) * 100)) ) ){
         (*entity)->pos_y = round((*entity)->pos_y);
-        (*entity)->pos_x = round((*entity)->pos_x);
-        
         if(animation_count == animation_freq)
             entity_swap_style(entity);
     }else if( (int)(*entity)->pos_y * 100 < (int)(round((*entity)->pos_y) * 100) && to_up == '#' ){
-        (*entity)->pos_x = round((*entity)->pos_x);
         (*entity)->pos_y = round((*entity)->pos_y);
     }
+    (*entity)->pos_x = round((*entity)->pos_x);
 }
 void go_down(Entity** entity, Levels* level,const char to_left, const char to_right, const char to_up, const char to_down, const int scale, const int move_speed, const int animation_count, const int animation_freq){
     if(((to_down != '#' && to_down != '-') || ( (((int)(round(((*entity)->pos_y + (move_speed * (1 / (double)scale))) * 100))) <= (int)(round((*entity)->pos_y) * 100))) && (to_down == '#' || to_down == '-'))){
@@ -93,14 +89,13 @@ void go_down(Entity** entity, Levels* level,const char to_left, const char to_ri
     }else if ( ( (((int)(round(((*entity)->pos_y + (move_speed * (1 / (double)scale))) * 100))) > (int)(round((*entity)->pos_y) * 100)) && (to_down == '#' || to_down == '-') ) &&
             ( ((int)(((*entity)->pos_y) * 100) < (int)(round((*entity)->pos_y) * 100)) ) ){
         (*entity)->pos_y = round((*entity)->pos_y);
-        (*entity)->pos_x = round((*entity)->pos_x);
         
         if(animation_count == animation_freq)
             entity_swap_style(entity);
     }else if( (int)(*entity)->pos_y * 100 < (int)(round((*entity)->pos_y) * 100) && (to_down == '#' || to_down == '-')){
-        (*entity)->pos_x = round((*entity)->pos_x);
         (*entity)->pos_y = round((*entity)->pos_y);
     }
+    (*entity)->pos_x = round((*entity)->pos_x);
 
     if(to_down == '-'){
         (*entity)->pos_y = round((*entity)->pos_y);
@@ -201,15 +196,15 @@ void choose_way(Entity** entity, Levels** level, char to_left, char to_right, ch
         // printf("x%.2f\ty%.2f\t w%i\t wN%i\t lcx%i\t lcy%i\n", ((*entity)->pos_x), ((*entity)->pos_y), (*entity)->direction, (*entity)->direction_next, (*entity)->last_change_x, (*entity)->last_change_y);
 
     if( ((*entity)->direction != (*entity)->direction_next) && 
-        ( (int)((round((*entity)->pos_x) - 0.02) * 100) <= (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_x) + 0.02) * 100)) &&
-        ( (int)((round((*entity)->pos_y) - 0.02) * 100) <= (int)((*entity)->pos_y * 100) <= (int)((round((*entity)->pos_y) + 0.02) * 100))
-        /*( fabs((*entity)->pos_x - round((*entity)->pos_x)) < 0.00001) && 
-        ( fabs((*entity)->pos_y - round((*entity)->pos_y)) < 0.00001)*/ ){
+        ( (int)((round((*entity)->pos_x) - 0.02) * 100) <= (int)((*entity)->pos_x * 100) && (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_x) + 0.02) * 100)) ||
+        ( (int)((round((*entity)->pos_y) - 0.02) * 100) <= (int)((*entity)->pos_y * 100) && (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_y) + 0.02) * 100)) ){
 
         if( ( !((fabs((*entity)->last_change_x - round((*entity)->pos_x)) < 0.00001) && (fabs((*entity)->last_change_y - round((*entity)->pos_y)) < 0.00001)) ) ){
             (*entity)->direction = (*entity)->direction_next;
-            (*entity)->last_change_x = (int)round((*entity)->pos_x);
-            (*entity)->last_change_y = (int)round((*entity)->pos_y);      
+            if((*entity)->type != 'p'){
+                (*entity)->last_change_x = (int)round((*entity)->pos_x);
+                (*entity)->last_change_y = (int)round((*entity)->pos_y);      
+            }
         }
     }
 
@@ -218,7 +213,9 @@ void choose_way(Entity** entity, Levels** level, char to_left, char to_right, ch
     }
     
     game_teleport(entity, *level);
-      //  printf("x%.2f\ty%.2f\t x%.2f\ty%.2f\n", ((*entity)->pos_x), ((*entity)->pos_y), round((*entity)->pos_x), round((*entity)->pos_y));
+
+    // if((*entity)->type == 'p')
+    //    printf("x%.2f\ty%.2f\t lx%i\tly%i\n", ((*entity)->pos_x), ((*entity)->pos_y), (*entity)->last_change_x, (*entity)->last_change_y);
         
 }
 

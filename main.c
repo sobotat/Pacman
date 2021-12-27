@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     int debug = 0, counter = 0, last_score = 0, last_coop_score = 0, last_lives = 0, last_win = 0, last_charge = 0, game_started = 0;
 
     //Settings    
-    int win_width = 810, win_height = 505;
+    int win_width = 810, win_height = 505; double win_scale = 1.6;
     int scale = 60, move_speed = 4, fps = 0; //, move_scale = scale/move_speed
     int animation_count = 0, animation_freq = scale/6/2;
     int levels_count = 4, coop = 0;
@@ -47,12 +47,19 @@ int main(int argc, char** argv) {
     printf("Level Loaded\n");
 
     // Find Player Location in Level
-    find_player(&(my_levels->entities[my_levels->current_level]), my_levels->entities_len[my_levels->current_level], &my_levels);
+    find_player(&my_levels);
     if(my_levels->coop == 1)
         printf("Coop is enabled\n");
 
+    if(debug == 1){
+        for (int i = 0; i < my_levels->maps_len; i++){
+            printf("P1: %i\tP2: %i\n", my_levels->pl_index[i], my_levels->coop_pl_index[i]);
+        }
+    }
+    
+
     // Setting window size
-    change_window_size(win, &my_levels, &win_width, &win_height);
+    change_window_size(win, &my_levels, &win_width, &win_height, win_scale);
 
     // Texture load
     load_texture(&ren, &my_levels, debug);
@@ -74,48 +81,71 @@ int main(int argc, char** argv) {
             }
             else if ( e.type == SDL_KEYDOWN ) { // key pressed down
                 if ( e.key.keysym.sym == SDLK_r ) {
-                    game_restart( win, &ren, &my_levels, &(my_levels->pl_index), &win_width, &win_height,levels_count, coop, debug);
+                    game_restart( win, &ren, &my_levels, &(my_levels->pl_index[my_levels->current_level]), &win_width, &win_height, win_scale,levels_count, coop, debug);
+                    game_started = 0;
                 }else if(e.key.keysym.sym == SDLK_SPACE){
-                    if (my_levels->game_win == 0)                                
+                    if (my_levels->game_win == 0){                   
                         my_levels->game_running = 1;
+                        game_started = 1;
+                    }
                 }else if(e.key.keysym.sym == SDLK_ESCAPE){
                     my_levels->game_running = 0;
                 }else if(e.key.keysym.sym == SDLK_l){
-                    change_level( win,&my_levels, &win_width, &win_height);
+                    change_level( win,&my_levels, &win_width, &win_height, win_scale);
+                }else if(e.key.keysym.sym == SDLK_EQUALS){
+                    win_scale += 0.2;
+                    change_window_size(win, &my_levels, &win_width, &win_height, win_scale);
+                }else if(e.key.keysym.sym == SDLK_MINUS){
+                    win_scale -= 0.2; 
+                    change_window_size(win, &my_levels, &win_width, &win_height, win_scale);
                 }
 
                 if( e.key.keysym.sym == SDLK_LEFT ){
-                    my_levels->entities[my_levels->current_level][my_levels->pl_index]->direction_wanted = 0;
-                    if (my_levels->game_win == 0)                    
+                    my_levels->entities[my_levels->current_level][my_levels->pl_index[my_levels->current_level]]->direction_wanted = 0;
+                    if (my_levels->game_win == 0){                   
                         my_levels->game_running = 1;
+                        game_started = 1;
+                    }
                 }else if( e.key.keysym.sym == SDLK_RIGHT ){
-                    my_levels->entities[my_levels->current_level][my_levels->pl_index]->direction_wanted = 1;
+                    my_levels->entities[my_levels->current_level][my_levels->pl_index[my_levels->current_level]]->direction_wanted = 1;
                     if (my_levels->game_win == 0)                     
                         my_levels->game_running = 1;
+                        game_started = 1;
                 }else if( e.key.keysym.sym == SDLK_UP ){
-                    my_levels->entities[my_levels->current_level][my_levels->pl_index]->direction_wanted = 2;
-                    if (my_levels->game_win == 0)                     
+                    my_levels->entities[my_levels->current_level][my_levels->pl_index[my_levels->current_level]]->direction_wanted = 2;
+                    if (my_levels->game_win == 0){                   
                         my_levels->game_running = 1;
+                        game_started = 1;
+                    }
                 }else if( e.key.keysym.sym == SDLK_DOWN ){
-                    my_levels->entities[my_levels->current_level][my_levels->pl_index]->direction_wanted = 3;
+                    my_levels->entities[my_levels->current_level][my_levels->pl_index[my_levels->current_level]]->direction_wanted = 3;
+                    if (my_levels->game_win == 0){                   
+                        my_levels->game_running = 1;
+                        game_started = 1;
+                    }
+                }else if( e.key.keysym.sym == SDLK_a && my_levels->coop_pl_index[my_levels->current_level] != -1 && my_levels->coop == 1){
+                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index[my_levels->current_level]]->direction_wanted = 0;
                     if (my_levels->game_win == 0)                     
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_a && my_levels->coop_pl_index != -1 && my_levels->coop == 1){
-                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 0;
-                    if (my_levels->game_win == 0)                     
+                        game_started = 1;
+                }else if( e.key.keysym.sym == SDLK_d &&  my_levels->coop_pl_index[my_levels->current_level] != -1 && my_levels->coop == 1 ){
+                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index[my_levels->current_level]]->direction_wanted = 1;
+                    if (my_levels->game_win == 0){                   
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_d &&  my_levels->coop_pl_index != -1 && my_levels->coop == 1 ){
-                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 1;
-                    if (my_levels->game_win == 0)                     
+                        game_started = 1;
+                    }
+                }else if( e.key.keysym.sym == SDLK_w &&  my_levels->coop_pl_index[my_levels->current_level] != -1 && my_levels->coop == 1 ){
+                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index[my_levels->current_level]]->direction_wanted = 2;
+                    if (my_levels->game_win == 0){                   
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_w &&  my_levels->coop_pl_index != -1 && my_levels->coop == 1 ){
-                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 2;
-                    if (my_levels->game_win == 0)                     
+                        game_started = 1;
+                    }
+                }else if( e.key.keysym.sym == SDLK_s &&  my_levels->coop_pl_index[my_levels->current_level] != -1 && my_levels->coop == 1 ){
+                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index[my_levels->current_level]]->direction_wanted = 3;
+                    if (my_levels->game_win == 0){                   
                         my_levels->game_running = 1;
-                }else if( e.key.keysym.sym == SDLK_s &&  my_levels->coop_pl_index != -1 && my_levels->coop == 1 ){
-                    my_levels->entities[my_levels->current_level][ my_levels->coop_pl_index]->direction_wanted = 3;
-                    if (my_levels->game_win == 0)                     
-                        my_levels->game_running = 1;
+                        game_started = 1;
+                    }
                 }
             }
             else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT) { // mouse button released
@@ -132,10 +162,10 @@ int main(int argc, char** argv) {
         int counter_time = (int)((SDL_GetTicks() - counter)/1000.0f);
         SDL_RenderClear(ren);
         if(my_levels->game_win == 0){
-            if(my_levels->game_running == 1){
+            if(game_started != 0){
                 draw_background(&ren, win_width, win_height);
-                draw_level(&ren, my_levels->entities[my_levels->current_level], my_levels->entities_len[my_levels->current_level], &my_levels, win_width, 1);
-            }else if(game_started == 0 && my_levels->score == 0 && my_levels->current_level == 0){
+                draw_level(&ren, my_levels->entities[my_levels->current_level], my_levels->entities_len[my_levels->current_level], &my_levels, win_width, win_scale, 1);
+            }else if(game_started == 0){
                 draw_start_screen(&ren, my_levels, win_width, win_height, counter_time,1);
             }
         }else{
@@ -144,7 +174,7 @@ int main(int argc, char** argv) {
         }
 
         if(my_levels->game_running == 1){
-            game_run( &ren, &my_levels, animation_count, animation_freq, my_levels->pl_index , my_levels->coop_pl_index, scale, move_speed, debug);
+            game_run( &ren, &my_levels, animation_count, animation_freq, my_levels->pl_index[my_levels->current_level] , my_levels->coop_pl_index[my_levels->current_level], scale, move_speed, win_scale, debug);
         }
 
         if(counter_time >= 4 || my_levels->score != last_score || my_levels->coop_score != last_coop_score || my_levels->lives != last_lives || my_levels->charge_time != last_charge || my_levels->game_win != last_win){
@@ -153,7 +183,7 @@ int main(int argc, char** argv) {
 
             if(last_win == my_levels->game_win && my_levels->game_win == 1 && counter_time >= 4){
                 if (my_levels->current_level != my_levels->maps_len - 1){
-                    game_win(win, &my_levels, &win_width, &win_height);    
+                    game_win(win, &my_levels, &win_width, &win_height, win_scale);    
                 }
                 counter = SDL_GetTicks();
             }

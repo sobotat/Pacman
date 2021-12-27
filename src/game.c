@@ -24,8 +24,8 @@ void game_score(Entity** entity, Levels** level){
         }
     }else {
         if( '.' == item){
-            if((*level)->entities[(*level)->current_level][(*level)->coop_pl_index]->pos_x == (*entity)->pos_x && 
-               (*level)->entities[(*level)->current_level][(*level)->coop_pl_index]->pos_y == (*entity)->pos_y ){
+            if((*level)->entities[(*level)->current_level][(*level)->coop_pl_index[(*level)->current_level]]->pos_x == (*entity)->pos_x && 
+               (*level)->entities[(*level)->current_level][(*level)->coop_pl_index[(*level)->current_level]]->pos_y == (*entity)->pos_y ){
                 (*level)->coop_score += 10;
             }else{
                 (*level)->score += 10;
@@ -142,41 +142,43 @@ void game_teleport(Entity** entity, Levels* level){
         (*entity)->direction = 1;
     }
 }
-void game_win(SDL_Window* win, Levels** level, int* win_width, int* win_height){
+void game_win(SDL_Window* win, Levels** level, int* win_width, int* win_height, const double win_scale){
     (*level)->game_win = 0;
     (*level)->game_running = 1;
     (*level)->charge_time = 0; (*level)->charge_count = 3;
-    change_level(win, level, win_width, win_height);
+    change_level(win, level, win_width, win_height, win_scale);
 }
-void find_player(Entity*** entities, const int entities_len, Levels** level){
-    for (int i = 0; i < entities_len; i++){
-        if((*entities)[i]->type == 'p'){
-            if((*level)->pl_index == -1)
-                (*level)->pl_index = i;
-            else
-                (*level)->coop_pl_index = i;
+void find_player(Levels** level){
+    for (int m = 0; m < (*level)->maps_len; m++){    
+        for (int i = 0; i < (*level)->entities_len[m]; i++){
+            if((*level)->entities[m][i]->type == 'p'){
+                if((*level)->pl_index[m] == -1)
+                    (*level)->pl_index[m] = i;
+                else
+                    (*level)->coop_pl_index[m] = i;
+            }
+        }
+        if((*level)->pl_index[m] == -1){
+            fprintf(stderr, "Player not found in level\n");
+            exit(1);
+        }
+        (*level)->entities[m][(*level)->pl_index[m]]->direction = -1;
+        (*level)->entities[m][(*level)->pl_index[m]]->direction_next = -1;
+        if((*level)->coop_pl_index[m] != -1){
+            (*level)->entities[m][(*level)->coop_pl_index[m]]->direction = -1;
+            (*level)->entities[m][(*level)->coop_pl_index[m]]->direction_next = -1;
         }
     }
-    if((*level)->pl_index == -1){
-        fprintf(stderr, "Player not found in level\n");
-        exit(1);
-    }
-    (*entities)[(*level)->pl_index]->direction = -1;
-    (*entities)[(*level)->pl_index]->direction_next = -1;
-    if((*level)->coop_pl_index != -1){
-        (*entities)[(*level)->coop_pl_index]->direction = -1;
-        (*entities)[(*level)->coop_pl_index]->direction_next = -1;
-    }
 }
 
 
-void change_window_size(SDL_Window* win, Levels** level, int* win_width, int* win_height){
-    *win_width = 60 + ((*level)->maps_size_x[(*level)->current_level] * 30);
-    *win_height = 125 + ((*level)->maps_size_y[(*level)->current_level] * 30);
+void change_window_size(SDL_Window* win, Levels** level, int* win_width, int* win_height, const double win_scale){
+    *win_width = 60 + (((*level)->maps_size_x[(*level)->current_level] * 30)) * win_scale;
+    *win_height = 125 + (((*level)->maps_size_y[(*level)->current_level] * 30)) * win_scale;
     SDL_SetWindowSize(win, *win_width, *win_height);
     SDL_SetWindowPosition(win, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 }
-void change_level(SDL_Window* win, Levels** level, int* win_width, int* win_height){
+void change_level(SDL_Window* win, Levels** level, int* win_width, int* win_height, const double win_scale){
 
     for (int e = 0; e < (*level)->entities_len[(*level)->current_level]; e++){
         (*level)->entities[(*level)->current_level][e]->pos_x = (*level)->entities[(*level)->current_level][e]->start_pos_x;
@@ -189,10 +191,10 @@ void change_level(SDL_Window* win, Levels** level, int* win_width, int* win_heig
         (*level)->current_level = 0;
 
     
-    change_window_size(win, level, win_width, win_height);
+    change_window_size(win, level, win_width, win_height, win_scale);
 }
 
-void game_run(SDL_Renderer** ren, Levels** level, const int animation_count, const int animation_freq, const int pl_index, const int coop_pl_index, const int scale, const int move_scale, const int debug){
+void game_run(SDL_Renderer** ren, Levels** level, const int animation_count, const int animation_freq, const int pl_index, const int coop_pl_index, const int scale, const int move_scale, const double win_scale, const int debug){
     for (int i = 0; i < (*level)->entities_len[(*level)->current_level]; i++){
         Entity* entity = (*level)->entities[(*level)->current_level][i];
         int entity_pos_x = (int)round(entity->pos_x);
@@ -226,28 +228,28 @@ void game_run(SDL_Renderer** ren, Levels** level, const int animation_count, con
 
         if(debug == 1){
             if(entity->type == 'r'){
-                draw_debug(ren, entity, 255, 0, 0);
+                draw_debug(ren, entity, 255, 0, 0, win_scale);
             }else if(entity->type == 'c'){
-                draw_debug(ren, entity, 0, 128, 255);
+                draw_debug(ren, entity, 0, 128, 255, win_scale);
             }else if(entity->type == 'm'){
-                draw_debug(ren, entity, 255, 0, 128);
+                draw_debug(ren, entity, 255, 0, 128, win_scale);
             }else if(entity->type == 'y'){
-                draw_debug(ren, entity, 255, 128, 0);
+                draw_debug(ren, entity, 255, 128, 0, win_scale);
             }else if(entity->type == 'p'){
-                draw_debug(ren, entity, 200, 200, 200);
+                draw_debug(ren, entity, 200, 200, 200, win_scale);
             }
         }
     }
 
     game_kill(&((*level)->entities[(*level)->current_level]), &(*level), (*level)->entities_len[(*level)->current_level], pl_index, coop_pl_index);
 }
-void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_index, int* win_width, int* win_height, const int levels_count, const int coop, const int debug){
+void game_restart(SDL_Window* win, SDL_Renderer** ren, Levels** level, int* pl_index, int* win_width, int* win_height, const double win_scale, const int levels_count, const int coop, const int debug){
     printf("Restarting Game ...\n");
     levels_free( level);
     load_levels( level, levels_count, coop, debug);
-    find_player( &((*level)->entities[(*level)->current_level]), (*level)->entities_len[(*level)->current_level], level);
+    find_player( level);
     load_texture( ren, level, debug);
-    change_window_size(win, level, win_width, win_height);
+    change_window_size(win, level, win_width, win_height, win_scale);
     printf("Restart Complete\n");
 }
 
@@ -310,7 +312,8 @@ void load_texture(SDL_Renderer** ren, Levels** levels, int debug){
 void load_levels(Levels** levels, const int levels_count, const int coop, const int debug){
     (*levels) = levels_new( levels_count, 12, 2);
     (*levels)->coop = coop;
-    for (int lc = 0; lc < levels_count; lc++){       
+    
+    for (int lc = 0; lc < levels_count; lc++){    
         char address[100]; address[0] = '\0'; strcat(address, "res/levels/level0"); 
         char str[10]; sprintf(str, "%i", lc + 1); strcat(address, str); strcat(address, ".txt\0");
 
@@ -329,6 +332,7 @@ void load_levels(Levels** levels, const int levels_count, const int coop, const 
 
         int level_x, level_y; 
         fscanf(file ,"%i %i", &level_x, &level_y);
+        
         (*levels)->maps_size_x[lc] = level_x;
         (*levels)->maps_size_y[lc] = level_y;
 
