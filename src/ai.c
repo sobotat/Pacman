@@ -195,16 +195,23 @@ void choose_way(Entity** entity, Levels** level, char to_left, char to_right, ch
     // if((*entity)->type == 'p')
         // printf("x%.2f\ty%.2f\t w%i\t wN%i\t lcx%i\t lcy%i\n", ((*entity)->pos_x), ((*entity)->pos_y), (*entity)->direction, (*entity)->direction_next, (*entity)->last_change_x, (*entity)->last_change_y);
 
-    if( ((*entity)->direction != (*entity)->direction_next) && 
-        ( (int)((round((*entity)->pos_x) - 0.02) * 100) <= (int)((*entity)->pos_x * 100) && (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_x) + 0.02) * 100)) ||
-        ( (int)((round((*entity)->pos_y) - 0.02) * 100) <= (int)((*entity)->pos_y * 100) && (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_y) + 0.02) * 100)) ){
+    if((*entity)->type != 'p'){
+        if( ((*entity)->direction != (*entity)->direction_next) && 
+            ( (int)((round((*entity)->pos_x) - 0.02) * 100) <= (int)((*entity)->pos_x * 100) && (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_x) + 0.02) * 100)) ||
+            ( (int)((round((*entity)->pos_y) - 0.02) * 100) <= (int)((*entity)->pos_y * 100) && (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_y) + 0.02) * 100)) ){
 
-        if( ( !((fabs((*entity)->last_change_x - round((*entity)->pos_x)) < 0.00001) && (fabs((*entity)->last_change_y - round((*entity)->pos_y)) < 0.00001)) ) ){
-            (*entity)->direction = (*entity)->direction_next;
-            if((*entity)->type != 'p'){
-                (*entity)->last_change_x = (int)round((*entity)->pos_x);
-                (*entity)->last_change_y = (int)round((*entity)->pos_y);      
+            if( ( !((fabs((*entity)->last_change_x - round((*entity)->pos_x)) < 0.00001) && (fabs((*entity)->last_change_y - round((*entity)->pos_y)) < 0.00001)) ) ){
+                (*entity)->direction = (*entity)->direction_next;
+                if((*entity)->type != 'p'){
+                    (*entity)->last_change_x = (int)round((*entity)->pos_x);
+                    (*entity)->last_change_y = (int)round((*entity)->pos_y);      
+                }
             }
+        }
+    }else{
+        if( ((*entity)->direction != (*entity)->direction_next) ){
+            (*entity)->direction = (*entity)->direction_next;
+
         }
     }
 

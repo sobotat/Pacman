@@ -78,10 +78,11 @@ There are 4 levels in the game, dangerous ghosts and, most importantly, the chan
     - v1.2.2
         - added Start, Win, Dead screen
         - added Window Scale (using with - and =)
-        - added new map
         - improved player movement
         - fixed player stucking after dead
         - fixed locating player in level
+    - v1.2.3
+        - improved player movement
 
 </details>
 
