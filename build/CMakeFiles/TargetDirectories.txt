@@ -1,3 +1,0 @@
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles/pacman.dir
