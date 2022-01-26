@@ -194,6 +194,7 @@ void choose_way(Entity** entity, Levels** level, char to_left, char to_right, ch
 
     // if((*entity)->type == 'p')
         // printf("x%.2f\ty%.2f\t w%i\t wN%i\t lcx%i\t lcy%i\n", ((*entity)->pos_x), ((*entity)->pos_y), (*entity)->direction, (*entity)->direction_next, (*entity)->last_change_x, (*entity)->last_change_y);
+
     if((*entity)->type != 'p'){
         if( ((*entity)->direction != (*entity)->direction_next) && 
             ( (int)((round((*entity)->pos_x) - 0.02) * 100) <= (int)((*entity)->pos_x * 100) && (int)((*entity)->pos_x * 100) <= (int)((round((*entity)->pos_x) + 0.02) * 100)) ||
@@ -210,6 +211,7 @@ void choose_way(Entity** entity, Levels** level, char to_left, char to_right, ch
     }else{
         if( ((*entity)->direction != (*entity)->direction_next) ){
             (*entity)->direction = (*entity)->direction_next;
+
         }
     }
 
