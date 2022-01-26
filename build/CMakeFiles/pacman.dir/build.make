@@ -60,106 +60,106 @@ include CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/main.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/main.c.o: ../main.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/pacman.dir/main.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/main.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/main.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c"
 
 CMakeFiles/pacman.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/main.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c" > CMakeFiles/pacman.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c" > CMakeFiles/pacman.dir/main.c.i
 
 CMakeFiles/pacman.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/main.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c" -o CMakeFiles/pacman.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/main.c" -o CMakeFiles/pacman.dir/main.c.s
 
 CMakeFiles/pacman.dir/src/sdl_playground.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/src/sdl_playground.c.o: ../src/sdl_playground.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/pacman.dir/src/sdl_playground.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/sdl_playground.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/sdl_playground.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c"
 
 CMakeFiles/pacman.dir/src/sdl_playground.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/src/sdl_playground.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c" > CMakeFiles/pacman.dir/src/sdl_playground.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c" > CMakeFiles/pacman.dir/src/sdl_playground.c.i
 
 CMakeFiles/pacman.dir/src/sdl_playground.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/src/sdl_playground.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c" -o CMakeFiles/pacman.dir/src/sdl_playground.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/sdl_playground.c" -o CMakeFiles/pacman.dir/src/sdl_playground.c.s
 
 CMakeFiles/pacman.dir/src/draw.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/src/draw.c.o: ../src/draw.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/pacman.dir/src/draw.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/draw.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/draw.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c"
 
 CMakeFiles/pacman.dir/src/draw.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/src/draw.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c" > CMakeFiles/pacman.dir/src/draw.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c" > CMakeFiles/pacman.dir/src/draw.c.i
 
 CMakeFiles/pacman.dir/src/draw.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/src/draw.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c" -o CMakeFiles/pacman.dir/src/draw.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/draw.c" -o CMakeFiles/pacman.dir/src/draw.c.s
 
 CMakeFiles/pacman.dir/src/entity.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/src/entity.c.o: ../src/entity.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/pacman.dir/src/entity.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/entity.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/entity.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c"
 
 CMakeFiles/pacman.dir/src/entity.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/src/entity.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c" > CMakeFiles/pacman.dir/src/entity.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c" > CMakeFiles/pacman.dir/src/entity.c.i
 
 CMakeFiles/pacman.dir/src/entity.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/src/entity.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c" -o CMakeFiles/pacman.dir/src/entity.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/entity.c" -o CMakeFiles/pacman.dir/src/entity.c.s
 
 CMakeFiles/pacman.dir/src/level.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/src/level.c.o: ../src/level.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/pacman.dir/src/level.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/level.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/level.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c"
 
 CMakeFiles/pacman.dir/src/level.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/src/level.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c" > CMakeFiles/pacman.dir/src/level.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c" > CMakeFiles/pacman.dir/src/level.c.i
 
 CMakeFiles/pacman.dir/src/level.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/src/level.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c" -o CMakeFiles/pacman.dir/src/level.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/level.c" -o CMakeFiles/pacman.dir/src/level.c.s
 
 CMakeFiles/pacman.dir/src/api.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/src/api.c.o: ../src/api.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/pacman.dir/src/api.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/api.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/api.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c"
 
 CMakeFiles/pacman.dir/src/api.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/src/api.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c" > CMakeFiles/pacman.dir/src/api.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c" > CMakeFiles/pacman.dir/src/api.c.i
 
 CMakeFiles/pacman.dir/src/api.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/src/api.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c" -o CMakeFiles/pacman.dir/src/api.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/api.c" -o CMakeFiles/pacman.dir/src/api.c.s
 
 CMakeFiles/pacman.dir/src/ai.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/src/ai.c.o: ../src/ai.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/pacman.dir/src/ai.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/ai.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/ai.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c"
 
 CMakeFiles/pacman.dir/src/ai.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/src/ai.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c" > CMakeFiles/pacman.dir/src/ai.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c" > CMakeFiles/pacman.dir/src/ai.c.i
 
 CMakeFiles/pacman.dir/src/ai.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/src/ai.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c" -o CMakeFiles/pacman.dir/src/ai.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/ai.c" -o CMakeFiles/pacman.dir/src/ai.c.s
 
 CMakeFiles/pacman.dir/src/game.c.o: CMakeFiles/pacman.dir/flags.make
 CMakeFiles/pacman.dir/src/game.c.o: ../src/game.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/pacman.dir/src/game.c.o"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/game.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pacman.dir/src/game.c.o   -c "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c"
 
 CMakeFiles/pacman.dir/src/game.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pacman.dir/src/game.c.i"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c" > CMakeFiles/pacman.dir/src/game.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c" > CMakeFiles/pacman.dir/src/game.c.i
 
 CMakeFiles/pacman.dir/src/game.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pacman.dir/src/game.c.s"
-	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c" -o CMakeFiles/pacman.dir/src/game.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/tomas/OneDrive - VSB-TUO/UPR/Pacman/src/game.c" -o CMakeFiles/pacman.dir/src/game.c.s
 
 # Object files for target pacman
 pacman_OBJECTS = \
